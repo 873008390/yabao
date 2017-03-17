@@ -1,0 +1,36 @@
+/areacitylist.js/1.1/Tue Nov 15 09:14:02 2016//
+/arealist.js/1.1/Tue Nov 15 09:14:02 2016//
+/auditgrouplist.js/1.1/Tue Nov 15 09:14:02 2016//
+/auditgrouporglist.js/1.1/Tue Nov 15 09:14:02 2016//
+/auditgroupuserlist.js/1.1/Tue Nov 15 09:14:02 2016//
+/auditlist.js/1.1/Tue Nov 15 09:14:02 2016//
+/auditsupplier.js/1.2/Mon Nov 21 06:39:09 2016//
+/cataloglist.js/1.1/Tue Nov 15 09:14:02 2016//
+/citylist.js/1.1/Tue Nov 15 09:14:02 2016//
+D/controller////
+/departmentlist.js/1.1/Tue Nov 15 09:14:02 2016//
+/departmentorglist.js/1.1/Tue Nov 15 09:14:02 2016//
+D/model////
+/orglist.js/1.2/Mon Nov 21 06:39:09 2016//
+/orgsecondlist.js/1.2/Mon Nov 21 06:39:09 2016//
+/orgthirdlist.js/1.2/Mon Nov 21 06:39:09 2016//
+/permissionlist.js/1.1/Tue Nov 15 09:14:02 2016//
+/permissionslist.js/1.1/Tue Nov 15 09:14:02 2016//
+/permissionuserlist.js/1.1/Tue Nov 15 09:14:02 2016//
+/productlist.js/1.1/Tue Nov 15 09:14:02 2016//
+/productlist2.js/1.2/Wed Nov 23 03:46:14 2016//
+/productspeclist.js/1.1/Tue Nov 15 09:14:02 2016//
+/producttypelist.js/1.1/Tue Nov 15 09:14:02 2016//
+/productunitlist.js/1.1/Tue Nov 15 09:14:02 2016//
+/provincelist.js/1.1/Tue Nov 15 09:14:02 2016//
+/purchaseadddetail.js/1.2/Fri Nov 18 06:55:40 2016//
+/purchaselist.js/1.2/Mon Nov 21 06:39:09 2016//
+D/store////
+/supplieradd.js/1.1/Tue Nov 15 09:14:02 2016//
+/supplierauditloglist.js/1.2/Mon Nov 21 06:39:09 2016//
+/supplierfilelist.js/1.2/Mon Nov 21 06:39:09 2016//
+/supplierlist.js/1.2/Mon Nov 21 06:39:09 2016//
+/supplierlist2.js/1.2/Wed Nov 23 04:09:25 2016//
+/townlist.js/1.1/Tue Nov 15 09:14:02 2016//
+/userlist.js/1.1/Tue Nov 15 09:14:02 2016//
+D/view////

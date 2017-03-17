@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="admin" extends="json-default" namespace="/admin">  
+        <action name="catalog" class="com.mbusiness.action.CatalogListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="keyvaluelist" class="com.mbusiness.action.KeyvalueListAction" method="list">
+            <result type="json"></result>
+        </action>
+        <action name="permissionlist" class="com.mbusiness.action.PermissionListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="permissionadd" class="com.mbusiness.action.PermissionAddAction" method="add">
+            <result type="json"></result>
+        </action> 
+        <action name="getip" class="com.mbusiness.action.GetipAction" method="get">
+            <result type="json"></result>
+        </action> 
+    </package>  
+    
+	<package name="user" extends="json-default" namespace="/user">  
+        <action name="login" class="com.mbusiness.action.UserLoginAction" method="login">
+            <result type="json"></result>
+        </action> 
+        <action name="list" class="com.mbusiness.action.UserListAction" method="list">
+            <result type="json"></result>
+        </action>
+        <action name="islogin" class="com.mbusiness.action.IsloginAction" method="list">
+            <result type="json"></result>
+        </action>
+        <action name="getusername" class="com.mbusiness.action.GetusernameAction" method="list">
+            <result type="json"></result>
+        </action>
+        <action name="getaccount" class="com.mbusiness.action.GetaccountAction" method="list">
+            <result type="json"></result>
+        </action>
+        <action name="add" class="com.mbusiness.action.UserAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="logout" class="com.mbusiness.action.LogoutAction" method="list">
+            <result type="json"></result>
+        </action>
+        <action name="delete" class="com.mbusiness.action.UserDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="getrandomcode" class="com.mbusiness.action.UserGetrandomcodeAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="register" class="com.mbusiness.action.UserRegisterAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="changepassword" class="com.mbusiness.action.UserChangepasswordAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="changeauditstatus" class="com.mbusiness.action.UserchangeauditstatusAction" method="change">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="getuserinfo" class="com.mbusiness.action.GetuserinfoAction" method="list">
+            <result type="json"></result>
+        </action>
+    </package>   
+</struts>

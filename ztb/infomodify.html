@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>修改资料</title>
+	<link rel="stylesheet" href="css/style_gh.css">
+</head>
+<body>
+	<div class="register">
+		<div class="register_header">
+			<div id="logo">
+				<a href="index.html">
+					<div class="logo1"><img src="image/logo1.png" alt=""></div>
+					<div class="logo2"><img src="image/logo2.png" alt=""></div>						
+				</a>		
+			</div>
+			<p class="register_p1">修改资料</p>
+		</div>
+		<div class="register_content clearfloat">
+			<p><br>只需填入修改内容，其它内容保留空白</p>
+			<form id="myform" method="post" action="">
+					<div>
+						<span><label>*</label> 新 密 码：</span> 
+						<input id="password" type="password" name="user.password"  class="required"/>
+					</div>
+					<div>
+						<span><label>*</label> 确认新密码：</span> 
+						<input id="confirm_password" type="password" name="confirm_password" class="required"/> 
+					</div> 					 
+					<div>
+						<span><label>*</label> 参标类型：</span> 
+						<select id="iscompany" name="iscompany" onchange="gradeChange('iscompany')">
+						  <option value ="1">公司</option>
+						  <option value ="0">个人</option>
+						</select>
+					</div> 
+					<div>
+						<span><label>*</label> 邮箱地址：</span> 
+						<input type="email" id="email" name="user.email" class="required email"/> 
+					</div> 		
+					<div>
+						<span><label>*</label> 公司名称：</span> 
+						<input type="text" id="name" name="user.zdy1" class="required" /> 
+					</div> 
+					<div>
+						<span><label>*</label> 开户银行：</span> 
+						<input type="text" id="bank" name="user.zdy3" class="required"/>
+					</div>
+					<div>
+						<span><label>*</label> 户 名：</span> 
+						<input type="text" id="bankname" name="user.zdy5" class="required"/>
+					</div>
+					<div>
+						<span><label>*</label> 账 号：</span> 
+						<input type="text" id="bankaccount" name="user.zdy6" class="required"/>
+					</div>
+					<div>
+						<span><label>*</label> 发票类型：</span> 
+						<select id="invoicetype" name="user.zdy7">
+						  <option value ="增值税专用发票">增值税专用发票</option>
+						  <option value ="增值税普通发票">增值税普通发票</option>
+						</select>
+					</div> 
+					<div>
+						<span><label>*</label> 纳税类型：</span> 
+						<select id="taxtype" name="user.zdy8">
+						  <option value ="小规模纳税人">小规模纳税人</option>
+						  <option value ="一般纳税人">一般纳税人</option>
+						</select>
+					</div> 
+					<div>
+						<span><label>*</label> 默认税率：</span> 
+						<input type="text" id="taxrate" name="user.zdy9" class="required"/>%
+					</div>
+					<div>
+						<span><label>*</label> 地 址：</span> 
+						<input type="text" id="address" name="user.zdy2" class="required"/>
+					</div>
+					<div>
+						<span><label>*</label> 联系人：</span> 
+						<input type="text" id="contacts" name="user.name" class="required"/>
+					</div>
+					<div>
+						<span><label>*</label> 固定电话：</span> 
+						<input type="text"  name="tel" id="tel" name="user.zdy4" class="required" /> 
+					</div>					  					 
+					<div>
+						<span><label>*</label> 公司传真：</span> 
+						<input type="text"  name="fax" id="fax" class="required" /> 
+					</div>			  					 
+					<div>
+						<span><label>*</label> 营业执照号：</span> 
+						<input type="text"  name="companycode" id="companycode" class="required" /> 
+					</div>			 
+					<div>
+						<span rowspan=2> 
+						<input type="button" value="保存" id="register" class="register_btn" />
+					</div> 				
+			</form>
+			<div class="register_logo" >
+				<div class="project_types">
+					<p><label>*</label>请选择项目类型</p>
+					<form action="" id="myform2"  method="post">
+
+					</form>
+				</div>			
+				<img src="image/register_logo.png" alt="">				
+			</div>
+	
+		</div>
+		<footer class="clearfloat">
+			<p>版权声明 版权所有：2010@亚宝药业集团股份有限公司 互联网药品信息服务资格证书：（晋）-非经营性-2008-2007</p>
+			<p>晋ICP备ICP备15001663</p>
+		</footer>		
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.validate.js"></script>		
+	<script src="js/cgh_js.js"></script>	
+	<script src="js/alamo_js.js"></script>
+	<script src="js/md5.js"></script>	
+	<script type="text/javascript">
+		gradeChange2();
+		getuserinfo();
+		var params = {
+			
+		}
+		$("#register").click(function(){
+			var count = 0;
+			var catalogids = "0";
+			var checkArry = document.getElementsByName("options");
+		    for (var i = 0; i < checkArry.length; i++) { 
+		           if(checkArry[i].checked == true){
+		               if(catalogids == ''){
+		               		catalogids = checkArry[i].value;
+		               }else{
+		               		catalogids += ","+ checkArry[i].value;
+		               }
+		               count++; 
+		            }
+		    }
+		    if( count == 0 ){
+		         alert("请选择项目类型");
+		    }else{
+				if($("#password").val() != $("#confirm_password").val()){
+					alert("密码不一致");
+				}else{
+					var pwd = $("#password").val();
+					if(pwd != ''){
+						pwd = hex_md5(pwd)
+					}
+					var param ={
+						'user.password': pwd,
+						'user.email':$("#email").val(), 
+						'user.zdy1':$("#name").val(),
+						'user.zdy2':$("#address").val(),
+						'user.zdy3': $("#bank").val(),
+						'user.zdy4': $("#tel").val(),
+						'user.zdy5': $("#bankname").val(),
+						'user.zdy6': $("#bankaccount").val(),
+						'user.zdy7': $("#invoicetype").val(),
+						'user.zdy8': $("#taxtype").val(),
+						'user.zdy9': $("#taxrate").val(),
+						'user.zdy10': $("#fax").val() +"_"+ $("#companycode").val() +"_"+ $("#iscompany").val() +"_"+ catalogids
+					};
+					$.post("user/modify.action",param,function(res){
+						if(res.success){
+							alert("修改成功");
+							self.location = "index.html";
+						}else{
+							alert(res.result);
+						}
+					});
+				}
+			}
+
+		});
+
+	</script>						
+</body>
+</html>

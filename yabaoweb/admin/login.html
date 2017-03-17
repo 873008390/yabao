@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>亚宝集团官网管理平台</title>
+    <link href="css/login.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="css/reset-xmr.css"/>
+    <script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<div class="mainBody">
+    <div class="main-con">
+        <div class="con">
+            <div class="logo-con"><img src="images/logo-yabao.png" width="440px"></div>
+            <div class="table-con">
+                <div class="tit"><span>官网管理平台</span></div>
+                <div class="tab">
+                    <form method="get" action="" name="" id="">
+                        <ul class="up_list">
+                            <li><span class="login-user" ></span><input class="mm" type="text" placeholder="用户名" name="nameid" id="nameid" maxlength="11" required></li>
+                            <li><span class="login-password" ></span><input class="mm" type="password" placeholder="密码" name="pwdid" id="pwdid" maxlength="20" required></li>
+                            <li class="tx" id="error"></li>
+                            <li class="btn-con"><input type="button" class="login_btn" id="btnLogin" value="登录"></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="power">power by 深圳市掌控移动软件有限公司.</div>
+
+
+</div>
+</body>
+</html>
+<script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/mbusiness.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    function validaccount(){
+        $("#userv").html("");
+        var result = 0;
+        if($("#nameid").val()==null||$("#nameid").val()=="")
+        {
+            $("#error").html("请输入登录名");
+        }
+        else{
+            result = 1;
+        }
+        return result;
+    }
+    function  validpassword(){
+        $("#pwdv").html("");
+        var result = 0;
+        if($("#pwdid").val()==null||$("#pwdid").val()=="")
+        {
+            $("#error").html("请输入密码");
+        }
+        else{
+            result = 1;
+        }
+        return result;
+    }
+    $(document).ready(function(){
+        //setcopyright();
+        $("#nameid").val(getCookie("name"));
+        //setcopright();
+        $("#nameid").blur(function(){
+            validaccount();
+        });
+
+        $("#pwdid").blur(function(){
+            validpassword();
+        });
+        $("#pwdid").keydown(function(e){
+            var curkey = e.which;
+            if(curkey == 13){
+                $("#btnLogin").click();
+                //return false;
+            }
+        });
+        $("#btnLogin").click(function(){
+            if(validaccount()==1&&validpassword()==1)
+            {
+                var mpwd = hex_md5($("#pwdid").val());
+                $("#pwdid").val(mpwd);
+                var params = {
+                    'name':$("#nameid").val(),
+                    'password':$("#pwdid").val(),
+                    'corporationid':0
+
+                }
+                $.post("../user/login",params,function(res) {
+                    if(res.result=="登录成功")
+                    {
+                        setCookie("name",$("#nameid").val());
+                        location.href = "index.html";
+                    }else{
+                        var msg = "用户名或密码错误！";
+                        $("#error").html(msg);
+                    }
+
+                },"json");
+            }
+        });
+    });
+
+</script>

@@ -1,0 +1,321 @@
+
+
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>亚宝集团招投标管理平台</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/default.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<LINK rel=stylesheet type=text/css href="css/jquery.msgbox.css">
+<SCRIPT type=text/javascript src="js/jquery.dragndrop.min.js"></SCRIPT>
+<SCRIPT type=text/javascript src="js/jquery.msgbox.min.js"></SCRIPT>
+<meta name="viewport" content="width=1200,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+	//focusblurmenu
+	jQuery.focusblurmenu = function(focusdom,focuswidthnew,animatetime) {
+		var focusblurmenuid = $(focusdom);
+		var defval = focusblurmenuid.val();
+		var defwidth = focusblurmenuid.width();
+		focusblurmenuid.focus(function(){
+			var thisval = $(this).val();
+			if(thisval==defval){
+				$(this).val("");
+				$(this).animate({width:"+"+focuswidthnew}, focuswidthnew).addClass("searchkeyfocus");
+                //$("#kuaijie").css("visibility","visible");
+				
+			}
+		});
+		focusblurmenuid.blur(function(){
+			var thisval = $(this).val();
+			if(thisval==""){
+				$(this).val(defval);
+			}
+			$(this).animate({width:"+"+defwidth}, focuswidthnew).removeClass("searchkeyfocus");
+			//$("#kuaijie").css("visibility","hidden");
+		});
+		
+	};
+	$.focusblurmenu("#searchkey","260px","300");
+
+$(".prev").click(function(){ 
+  //根据curIndex进行上一个图片处理
+ /* if ($('.contentbody').css('display')=='none') {
+
+ 	 $('.contentbody').fadeIn(2000);
+ 	  $('.contentbody3').css('display','none');
+
+ }else{
+   $('.contentbody3').fadeIn(2000);
+   $('.contentbody').css('display','none')	
+ } */
+
+
+});
+$(".next").click(function(){ 
+ /* if ($('.contentbody').css('display')=='none') {
+
+ 	 $('.contentbody').fadeIn(2000);
+ 	  $('.contentbody3').css('display','none');
+
+ }else{
+   $('.contentbody3').fadeIn(2000);
+   $('.contentbody').css('display','none')	
+ } */
+
+
+});
+
+
+});
+</script>
+
+
+<script type="text/javascript"> 
+
+  function currentData(){ 
+    var d=new Date(),str=''; 
+    str+=d.getFullYear()+'/'; 
+    str+=d.getMonth() + 1+'/'; 
+    str+=d.getDate(); 
+    return str; 
+} 
+setInterval(function(){$('#data').html(currentData)},6000);
+ 
+
+  function currentTime(){ 
+    var d=new Date(),str=''; 
+    str+=d.getHours()+':'; 
+    str+=d.getMinutes(); 
+    //str+= d.getSeconds()+'秒'; 	
+    return str; 
+} 
+setInterval(function(){$('#time').html(currentTime)},6000);
+
+</script> 
+
+
+
+</head>
+
+<body> 
+<center>
+	<div id="mainhtml" class="mainhtml">
+		<table width="100%" height="100%" cellspacing="0">
+			<tr class="titletr">
+				<td height="25" id="name" width="50%" valign="middle">
+					
+				</td>
+				<td align="right" valign="middle">
+					<img src="images/close.gif" style="margin-right:10px;" border="0" id="closehtml"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<iframe src ="" width="100%" height="100%" scrolling="auto" id="html"></iframe>
+				</td>
+			</tr>
+		</table>
+	</div>
+</center>
+<div class="mainBody" id="mainBody2">
+  <div class="title2">亚宝集团招投标管理平台<i class="banben">版本号V1.0.80</i></div>
+  <div class="power">power by ShengZhen Mobile Soft Inc.</div>
+
+<div class="w_portal_box clearfix">
+	<a href="#" class="one_block" onclick="a1('栏目','cataloglist.html?idtype=allwithlimit&typeid=0','column')" onmouseover="title='栏目管理'">
+    	<div class="w_center_icon1" ><img src="images/fa/column2.png" alt=""></div>
+        <div class="w_center_title">栏目 <br>Catalog</div>
+    </a>
+    <a href="#" class="two_block" onclick="a1('供应商','supplierlist.html?idtype=allwithlimit&typeid=0','agent')" onmouseover="title='供应商'">
+    	<div class="w_center_icon2"><img src="images/fa/user2.png" alt=""></div>
+        <div class="w_center_title">供应商 <br>Supplier</div>
+    </a>
+    <a href="#" class="three_block" onclick="a1('权限','permissionlist.html?idtype=allwithlimit&typeid=0','jurisdiction')" onmouseover="title='权限管理'">
+    	<div class="w_center_icon3"><img src="images/fa/jurisdiction2.png" alt=""></div>
+        <div class="w_center_title">权限 <br>Permission</div>
+    </a>
+    <a href="#" class="four_block" onclick="a1('联系我们','contactuslist.html?idtype=allwithlimit&typeid=0','patient')" onmouseover="title='联系我们'">
+    	<div class="w_center_icon4"><img src="images/fa/phone2.png" alt=""></div>
+        <div class="w_center_title">Contact Us<br> 联系我们</div>
+    </a>
+    <a href="#" class="five_block" onclick="a1('用户管理','userlist.html?idtype=allwithlimit&typeid=0','agent')" onmouseover="title='用户管理'">
+    	<div class="w_center_icon5"><img src="images/fa/user3.png" alt=""></div>
+        <div class="w_center_title">用户管理<br>User</div>
+    </a>
+    <a href="#" class="six_block">
+    	<div class="w_center_icon6"></div>
+        <div class="w_center_title"></div>
+    </a>
+    <a href="#" class="seven_block">
+    	<div class="w_center_icon7"></div>
+        <div class="w_center_title"></div>
+    </a>
+    <a href="#" class="eight_block">
+    	<div class="w_center_icon8"></div>
+        <div class="w_center_title"></div>
+    </a>
+    <a href="#" class="nine_block">
+    	<div class="w_center_icon9"></div>
+        <div class="w_center_title"></div>
+    </a>
+    <a href="#" class="ten_block">
+    	<div class="w_center_icon10"></div>
+        <div class="w_center_title"></div>
+    </a>
+    <a href="#" class="eleven_block">
+    	<div class="w_center_icon11"></div>
+        <div class="w_center_title"></div>
+    </a>
+    <a href="#" class="twelve_block">
+    	<div class="w_center_icon12"></div>
+        <div class="w_center_title"></div>
+    </a>
+    <div class="clear"></div>
+</div>  
+  
+  <div id="top-bar" class="top-bar">
+    <div class="bar">
+      <button id="navbox-trigger" class="navbox-trigger"></button> 
+      <button class="kong"></button>
+      <button id="fa" class="fa jurisdiction" onclick="a1('权限','permissionlist.html?idtype=allwithlimit&typeid=0','jurisdiction')" onmouseover="title='权限管
+
+理'"></button>
+      <button id="fa" class="fa agent" onclick="a1('供应商','supplierlist.html?idtype=allwithlimit&typeid=1','agent')" onmouseover="title='供应商'"></button>
+      <button id="fa" class="fa column" onclick="a1('栏目','cataloglist.html?idtype=allwithlimit&typeid=2','column')" onmouseover="title='栏目管理'"></button>
+      <button id="fa" class="fa phone" onclick="a1('联系我们','contactuslist.html?idtype=allwithlimit&typeid=4','patient')" onmouseover="title='联系我们'"></button> 
+      <button id="fa" class="fa agent2" onclick="a1('用户','userlist.html?idtype=allwithlimit&typeid=5','patient')" onmouseover="title='用户'"></button>               
+      <input type="hidden" id="count" value="0"/>
+      <span class="time"><ul><li id="time"></li><li id="data"></li></ul></span>
+      <span class="currentuser" id="setuser"></span>      
+    </div>
+  
+    <div class="navbox">
+    
+       <div class="navbox-lift">
+          <div class="other">
+             <a class="other_a1" id="help">帮助</a>
+             <a class="other_a2" id="about">关于</a>
+             <a class="other_a3" id="logout">退出</a>
+          </div>
+       </div> 
+  </div>
+  <script>
+	function a1old(title,content,backimg){ 
+	  var $kuan;
+	   $kuan = $(window).width()-100;
+	  var $gao;
+	   $gao = $(window).height()-50; 
+	   
+	   $.msgbox({
+			closeImg: 'images/close.gif',
+			height:$gao,
+			width:$kuan,
+			content:content,
+			type :'iframe',
+		    title: title,
+			backimg: backimg,
+		    });	
+     };
+
+	function a1(title,content,backimg){
+		$("#name").html("&nbsp;&nbsp;"+ title);
+		$("#html").attr('src',content);
+		$("#mainhtml").show();
+		$('#top-bar').removeClass('navbox-open');
+	}
+     
+
+    function appendFa(title,content,backimg){
+		 //alert($(".bar").html());
+		 var tmp = $(".bar").html();
+		 if(tmp.indexOf(title)==-1){
+			 var total = $("#count").val();
+			 if(total > 5){
+				 var t1 = ($(".bar").html()).split("</button>")[0];
+				 var t2 = ($(".bar").html()).replace(t1+"</button>","");
+				 $(".bar").html(t2);
+			 }
+			 $(".bar").append("<button id='fa' class='fa' onclick=a1('"+title+"','"+content+"','"+backimg+"') onmouseover=title='"+title+"'></button>");        
+			 $("button:last-of-type").addClass(""+backimg+"");
+			 $("#count").val(total+1);
+		 }
+    }
+    
+    function closemenu($target){
+    	$('#top-bar').removeClass('navbox-open');
+    	if(!$target.closest('#navbox-trigger').length){
+    		//$("#mainhtml").show();
+    	}
+    }
+
+
+	(function () {
+	    $(document).ready(function () {
+	    	$("#logout").click(function(){
+	    		logout();
+	    	});
+	        $("#about").click(function(){
+	    		alert("亚宝集团官网管理平台。开发商：深圳市掌控移动软件有限公司");
+	    	});
+	        $("#mainhtml").hide();
+	        islogin();
+	    	setInterval("islogin()",60000);
+	    	setUsername();
+	    	$('#time').html(currentTime);
+	    	$('#data').html(currentData);
+			setInterval(function(){$('#time').html(currentTime)},10000);
+			setInterval(function(){$('#data').html(currentData)},60000);	        
+	        setcopyright();
+	        $("#logout").click(function(){
+	        	logout();
+	        });
+	        $("#closehtml").click(function(){
+	        	$("#html").attr('src',"");
+	        	$("#mainhtml").hide();
+	        });
+	        $('#navbox-trigger').click(function () {
+	            return $('#top-bar').toggleClass('navbox-open');
+	        });
+	       $(document).click(function (e) {
+	            var $target;
+	            $target = $(e.target);
+	            if (!$target.closest('.navbox').length && !$target.closest('#navbox-trigger').length) {
+	                return $('#top-bar').removeClass('navbox-open');
+	            }
+	        });
+	        
+	    });
+	}.call(this));
+	
+	function currentData(){ 
+	    var d=new Date(),str=''; 
+	    str+=d.getFullYear()+'/'; 
+	    str+=d.getMonth() + 1+'/'; 
+	    str+=d.getDate(); 
+	    return str; 
+	} 
+	 
+	
+	function currentTime(){ 
+	    var d=new Date(),str=''; 
+	    str+=d.getHours()+':'; 
+	    if(d.getMinutes() < 10){
+	    	str+= "0"+ d.getMinutes(); 
+	    }else{
+	    	str+=d.getMinutes(); 
+	    }
+	    //str+= d.getSeconds()+'秒'; 	
+	    return str; 
+	} 
+	</script> 
+</div>
+</body>
+</html>
+<script src="js/mbusiness.js" type="text/javascript"></script>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>亚宝药业采购共享平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/cgh_js.js"></script>
+    <script src="js/getParameter.js"></script>
+	<script type="text/javascript" src="js/Calendar4.js"></script>
+</head>
+<body id="newsupplier2">
+    <div class="supplier_none"> 
+        <p>请选择供应商</p>  
+        <iframe id="iframe" src="supplierlist-main2.html?idtype=searchwithlimit&typeid=auditstatus=1">
+            
+        </iframe>
+    </div>
+    <div  class="newsupplier2_top_h1">
+                采购单修改
+    </div>
+    <div class="newsupplier2_top_1">
+                <span rowspan="2">
+                    <input type="submit" value="返回" id="back" class="register_btn" />
+                    <input type="submit" value="保存" id="save" class="register_btn" />
+                 </span>
+    </div> 
+    <div class="newsupplier2_top_2  clearfix">
+        <div class="newsupplier2_top_2_1">
+            <span><label>*</label>供应商：</span>
+           <input type="text" id="supplier" name="supplier" disabled="disabled"><button class="supplier_btn">选择</button>    
+        </div>
+        <div class="newsupplier2_top_2_1">
+            <span><label>*</label>采购单号：</span>
+            <input type="text" id="purchaseno" name="purchaseno" class="required" readonly="readonly"/>
+        </div>
+        <div class="newsupplier2_top_2_1">
+            <span><label>*</label>采购日期：</span>
+            <input type="text" id="purchasedate" name="purchasedate" class="required" onClick="new Calendar().show(this);"/>
+        </div>
+    </div>
+    </div>
+    <div class="newsupplier_top2">
+        <ul class="clearfix">
+            <li class="pull-left active"><a href="javascript:void(0)">明细记录</a></li>
+            <li class="pull-left "><a href="javascript:void(0)">其它</a></li>
+        </ul>
+    </div>
+    <div class="newsupplier2_main clearfix" style="display: block;">
+        <iframe id="frame" src="" width="100%" height="400" ></iframe>
+    </div>
+    <div class="newsupplier2_main clearfix">
+        <div>
+                    <span><label></label> 录单人：</span>
+                    <input type="text" id="creator"  name="creator" class="required" readonly="readonly"/>
+                </div>
+                <div>
+                    <span><label></label> 录单日期：</span>
+                    <input type="text" id="createdate"  name="createdate"  class="required" readonly="readonly"/>
+                </div>
+    </div>
+    <script>
+        $(function(){
+        	$("#frame").attr("src","purchaseadddetail.html?idtype=id&typeid="+ getParameter("id"));
+	        $("#back").click(function(){
+	        		history.back();
+	        });
+	       getData();
+	        $("#provinceid").change(function(){
+	        		//alert("1");
+	        		getCity();
+	        });	
+            Tab2('.pull-left','.newsupplier2_main');
+            function Tab2(a,b){
+                var aBtn = $(a);
+                var aDiv = $('#newsupplier2').find(b);
+                aBtn.click(function(){
+                    $('.newsupplier2_main').css('display', 'none');
+                    aBtn.removeClass('active');
+                    aBtn.eq($(this).index()).addClass('active');
+                    aDiv.eq($(this).index()).css('display', 'block');
+                })
+            }
+            /*表单验证*/
+            $("#save").click(function(){
+	                if($("#supplier").val() == null || $("#supplier").val() == ""){
+	                    alert("请选择名称");
+	                    return false;
+	                }
+	                if($("#purchasedate").val() == null || $("#purchasedate").val()==""){
+	                    alert("请输入日期");
+	                    return false;
+	                }
+	            	var data = document.getElementById('frame').contentWindow.getData();
+					 
+					var data1 = eval("("+ data +")");
+                   //alert(data.id);
+                    if(data1.id == -1){
+	            		alert(data1.err); 
+                        return false;
+	                }else if(data1.id == -2){
+	            		data = "-1";
+	                }
+	
+	                var param = {
+	                    'purchase.id':getParameter("id"),
+	                    'purchase.zdy8':$("#supplier").val(),
+	                    'purchase.zdy9':encodeURIComponent(data),
+	                    'purchase.zdy10':$("#purchasedate").val()
+	                };
+	                $.post("purchase/onlineadd.action",param,function(res){
+	                    alert(res.result);
+	                });
+	            return false;
+            });
+
+            $('.supplier_btn').click(function () {
+               $('.supplier_none').show();
+            })
+
+        });
+		
+		function getData(){
+			var params = {
+				'idtype': "id",
+				'typeid': getParameter("id")
+			};
+			$.post("purchase/list.action", params, function(res){
+				var purchases = res.purchases;
+				
+				if(purchases[0].id > 0){
+                    	$("#purchasedate").val(purchases[0].zdy2);
+                    	$("#purchaseno").val(purchases[0].purchaseno);
+                    	$("#supplier").val(purchases[0].zdy4);
+                    	$("#creator").val(purchases[0].zdy3);
+                    	$("#createdate").val(purchases[0].zdy6);
+				}
+			});
+		}
+
+        $("#uploadbtn").click(function(){
+            if($("#path").val() == '' || $("#path").val() == null){
+                alert("请选择文件");
+            }else{
+                ajaxFileUpload();
+            }
+        });
+		  	
+        function getData1(name){ 
+            //alert(name);
+            $("#supplier").val(name);
+            close();
+        }
+
+        function close() {
+        
+            $('.supplier_none').hide();
+        }            
+    </script>
+</body>
+</html>

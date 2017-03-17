@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="producttype" extends="json-default" namespace="/producttype">  
+        <action name="list" class="com.mbusiness.action.ProducttypeListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="add" class="com.mbusiness.action.ProducttypeAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="delete" class="com.mbusiness.action.ProducttypeDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="exportTypeExcel" class="com.mbusiness.action.ExportProducttypeExcelAction" method="export">
+            <result type="json"></result>
+        </action>
+    </package> 
+</struts>

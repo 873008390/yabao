@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="purchase" extends="json-default" namespace="/purchase">  
+        <action name="list" class="com.mbusiness.action.PurchaseListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="add" class="com.mbusiness.action.PurchaseAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="delete" class="com.mbusiness.action.PurchaseDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="detaillist" class="com.mbusiness.action.PurchasedetailListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="detailadd" class="com.mbusiness.action.PurchasedetailAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="detaildelete" class="com.mbusiness.action.PurchasedetailDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="onlineadd" class="com.mbusiness.action.PurchaseonlineAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="syn" class="com.mbusiness.action.PurchasesynAction" method="syn">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="echart" class="com.mbusiness.action.PurchaseEchartListAction" method="list">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="priceechart" class="com.mbusiness.action.PriceEchartListAction" method="list">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="exportPurchaseExcel" class="com.mbusiness.action.ExportPurchaseExcelAction" method="export">
+            <result type="json"></result>
+        </action>
+    </package> 
+</struts>

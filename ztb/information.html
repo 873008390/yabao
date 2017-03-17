@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基本信息</title>
+	<link rel="stylesheet" href="css/style_gh.css">
+</head>
+<body>
+	<div class="register" id="entry">
+		<div class="register_header">
+			<div id="logo">
+				<a href="index.html">
+					<div class="logo1"><img src="image/logo1.png" alt=""></div>
+					<div class="logo2"><img src="image/logo2.png" alt=""></div>						
+				</a>		
+			</div>
+			<p class="register_p1">基本信息</p>
+		</div>
+		<div class="register_content clearfloat">
+			<img src="image/register_content.png" alt="">
+			<form action="" id="myform" method="post" action="">
+					<div>
+						<span><label>*</label> 参标类型：</span> 
+						<select id="iscompany" name="iscompany" onchange="gradeChange('iscompany')">
+						  <option value ="1">公司</option>
+						  <option value ="0">个人</option>
+						</select>
+					</div> 
+					<div>
+						<span><label>*</label> 公司名称：</span> 
+						<input type="text" id="name" class="required" /> 
+					</div> 
+					<div>
+						<span><label>*</label> 开户银行：</span> 
+						<input type="text" id="bank" class="required"/>
+					</div>
+					<div>
+						<span><label>*</label> 户 名：</span> 
+						<input type="text" id="bankname" class="required"/>
+					</div>
+					<div>
+						<span><label>*</label> 账 号：</span> 
+						<input type="text" id="bankaccount" class="required"/>
+					</div>
+					<div>
+						<span><label>*</label> 发票类型：</span> 
+						<select id="invoicetype">
+						  <option value ="增值税专用发票">增值税专用发票</option>
+						  <option value ="增值税普通发票">增值税普通发票</option>
+						</select>
+					</div> 
+					<div>
+						<span><label>*</label> 纳税类型：</span> 
+						<select id="taxtype">
+						  <option value ="小规模纳税人">小规模纳税人</option>
+						  <option value ="一般纳税人">一般纳税人</option>
+						</select>
+					</div> 
+					<div>
+						<span><label>*</label> 默认税率：</span> 
+						<input type="text" id="taxrate" class="required"/>%
+					</div>
+					<div>
+						<span><label>*</label> 地 址：</span> 
+						<input type="text" id="address" class="required"/>
+					</div>
+					<div>
+						<span><label>*</label> 联系人：</span> 
+						<input type="text" id="contacts" name="contacts" class="required"/>
+					</div>
+					<div>
+						<span><label>*</label> 固定电话：</span> 
+						<input type="text"  name="tel" id="tel" class="required" /> 
+					</div>				  					 
+					<div>
+						<span><label>*</label> 公司传真：</span> 
+						<input type="text"  name="fax" id="fax" class="required" /> 
+					</div>			  					 
+					<div>
+						<span><label>*</label> 营业执照号：</span> 
+						<input type="text"  name="companycode" id="companycode" class="required" /> 
+					</div>				  					 
+					<div>
+						<span rowspan="2"> 
+						<input type="hidden" id="type" value="registercomplete" />
+						<input type="button" value="完成注册" id="registercomplete" class="register_btn" />
+						</span>
+					</div> 			
+			</form>
+			<div class="register_logo" >
+				<div class="project_types">
+					<p><label>*</label>请选择项目类型</p>
+					<form action="" id="myform2"  method="post">
+		
+					</form>
+				</div>			
+				<img src="image/register_logo.png" alt="">				
+			</div>
+	
+		</div>
+		<footer class="clearfloat">
+			
+		</footer>		
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.validate.js"></script>		
+	<script src="js/cgh_js.js"></script>			
+	<script src="js/alamo_js.js"></script>	
+	<script type="text/javascript">
+		islogin();
+		$("#registercomplete").click(function(){
+		var count = 0;
+			var catalogids = "0";
+			var checkArry = document.getElementsByName("options");
+		    for (var i = 0; i < checkArry.length; i++) { 
+		           if(checkArry[i].checked == true){
+		               if(catalogids == ''){
+		               		catalogids = checkArry[i].value;
+		               }else{
+		               		catalogids += ","+ checkArry[i].value;
+		               }
+		               count++; 
+		            }
+		    }
+		    if( count == 0 ){
+		         alert("请选择项目类型");
+		    }else{
+				if($("#iscompany").val() == 1){
+					if($("#bank").val() == ""){
+						alert("请输入开户行");
+					}else if($("#bankname").val() == ""){
+						alert("请输入户名");
+					}else if($("#bankaccount").val() == ""){
+						alert("请输入银行账号");
+					}else if($("#fax").val() == ""){
+						alert("请输入传真号");
+					}else if($("#companycode").val() == ""){
+						alert("请输入营业执照号");
+					}else if($("#taxrate").val() == ""){
+						alert("请输入税率");
+					}else if($("#name").val() == ""){
+						alert("请输入公司名称");
+					}else if($("#tel").val() == ""){
+						alert("请输入固定电话");
+					}else if($("#address").val() == ""){
+						alert("请输入公司地址");
+					}else if($("#contacts").val() == ""){
+						alert("请输入联系人");
+					}else{
+						$("#taxrate").val($("#taxrate").val().replace("\%",""));
+						registercomplete(catalogids);
+					}
+				}else{
+					if($("#tel").val() == ""){
+						alert("请输入固定电话");
+					}else if($("#address").val() == ""){
+						alert("请输入地址");
+					}else if($("#contacts").val() == ""){
+						alert("请输入联系人");
+					}else{
+						if($("#name").val() == ""){
+							$("#name").val($("#contacts").val());
+						}
+						$("#taxrate").val($("#taxrate").val().replace("\%",""));
+						registercomplete(catalogids);
+					}
+				}
+			}
+		});
+	</script>		
+</body>
+</html>

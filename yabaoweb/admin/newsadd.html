@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<link href="css/layout.min.css" rel="stylesheet" type="text/css">
+	<link href="css/jquery ui-1.9.2.css" rel="stylesheet" type="text/css"/>
+	<link href="css/primeui/primeui-2.2.RC1-min.css" rel="stylesheet" type="text/css"/>
+	<link href="css/primeui/theme.css" rel="stylesheet" type="text/css"/>
+	<link href="css/fa/font-awesome.css" rel="stylesheet" type="text/css"/>
+	<link href="css/nav.css" rel="stylesheet" type="text/css">
+	<link href="css/mbusiness.css" rel="stylesheet" type="text/css">	
+    
+    <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/jquery ui-1.11.4.js"></script>
+    <script type="text/javascript" src="js/primeui/primeui-2.2.RC1-min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+	<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+	<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+	<script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+
+	<script src="js/ajaxfileupload.js"></script>	
+	<script src="js/mbusiness.js"></script>
+	<script type="text/javascript" src="js/Calendar4.js"></script>
+<script>
+var ui = 'touch';
+</script>
+<script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("已清空草稿箱")
+    }
+</script>
+<script>
+function GetRequest() {
+
+   var url = location.search; //获取url中"?"符后的字串
+
+   var theRequest = new Object();
+
+   if (url.indexOf("?") != -1) {
+
+      var str = url.substr(1);
+
+      strs = str.split("&");
+
+      for(var i = 0; i < strs.length; i ++) {
+
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+
+      }
+
+   }
+
+   return theRequest;
+
+}
+
+$(document).ready(function(){  
+  var Request = new Object();
+  Request = GetRequest();
+  $("#cid").val(Request["id"]);
+  var params = {
+		     	  		'idtype':'content' ,
+						'typeid':Request["id"]       
+						
+						}
+  $.post("../news/list.action",params,function(res) {
+		var newss = res.newss;
+		if(newss[0].id>0){	
+			if(newss[0].icon != ''){
+				$("#img").html("<img src='../"+ newss[0].icon +"' height='150'/>");
+			}else{
+				$("#img").html("没有图片");
+			}
+			$("#title").val(newss[0].title);
+			if(newss[0].newsdate == null || newss[0].newsdate == ''){
+				var y = new Date().getFullYear();
+				var m;
+				var d;
+				if((new Date().getMonth() + 1)>9){
+		    		m = new Date().getMonth() + 1;
+		    	}else{
+		    		m = '0'+(new Date().getMonth() + 1);
+		    	}
+		    	if(new Date().getDate()>9){
+		    		d = new Date().getDate();
+		    	}else{
+		    		d = '0'+(new Date().getDate());
+		    	}
+				$("#newsdate").val(y +"-"+ m +"-"+ d);
+			}else{
+				$("#newsdate").val(newss[0].newsdate.replace(/\./g,"-"));
+			}
+			ueditor = UE.getEditor('editor');
+			ueditor.ready(function () {
+			        // editor准备好之后才可以使用
+			        ueditor.setContent(newss[0].content);
+			
+			});
+		}
+	},"json");		
+		
+	function ajaxFileUpload() {
+            var param = {
+						'news.content':encodeURIComponent(UE.getEditor('editor').getContent()),
+						'news.catalogid':getParameter("catalogid"),
+						'news.title':encodeURIComponent($("#title").val()),
+						'news.id':$("#cid").val(),
+						'news.newsdate':$("#newsdate").val().replace(/-/g,".")
+					};
+            $.ajaxFileUpload
+            (
+                {
+					url: '../news/addcontent.action', //用于文件上传的服务器端请求地址
+                    secureuri: false, //是否需要安全协议，一般设置为false
+                    fileElementId: 'upload', //文件上传域的ID
+                    dataType: 'json', //返回值类型 一般设置为json
+                    data:param,
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+                        alert(data.result);
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                        alert(e);
+                    }
+                }
+            )
+            return false;
+  }		
+ 
+  $("#newsSubmit").click(function(){
+	  var content = UE.getEditor('editor').getContent();
+	  if($("#title").val() == ''){
+		  alert("请输入标题");
+	  }else if(content = ''){
+		  alert("请输入内容");
+	  }else if($("#newsdate").val() == ''){
+		  alert("请选择日期");
+	  }else{	  
+		  //alert(content);
+		  ajaxFileUpload();
+	  }
+  });
+});
+</script>
+</head>
+<body>
+<div id="actionInfo"> </div>
+<div class="clear"></div>
+<div id="newdiv" class="connerdiv">
+	  <form id="addArticleF" name="addArticleForm" action="../news/addcontent" method="POST"  enctype ="multipart/form-data">
+	    <dl class="connerbox">
+			<dd>
+	    		<span>
+	    			<table width="100%" height="100%">
+	    				<tr>
+	    					<td><a onclick="javascript:history.back();" style="cursor:pointer;"><<返回</a></td>
+	    					<td>新增新闻</td>
+	    					<td>&nbsp;</td>
+	    				</tr>
+	    			</table>
+	    		</span>
+	    	</dd>
+			<dd>
+				<span class="form_hd">图片：</span>
+				<span class="form_td">
+			      	<input name="upload" id="upload" type="file" value="" maxlength="6" class="text_input"  onchange="path.value=this.value" >
+			      	<input type="hidden" name="path" id="path" style="border:0px" size="10" style="margin-top:10px">
+			    </span>
+				<span class="form_td">
+			      	<input type="hidden" name="news.id" id="cid">
+			      	<span id="img"></span>
+			    </span>
+			</dd>
+			<dd>
+				<span class="form_hd">标题：</span>
+				<span class="form_td">
+			      	<input type="text" name="news.title" id="title">
+			    </span>
+			</dd>
+			<dd>
+				<span class="form_hd">日期：</span>
+				<span class="form_td">
+			      	<input type="text" name="news.newsdate" id="newsdate" onclick="new Calendar().show(this);">
+			    </span>
+			</dd>
+			<dd>
+				<span>内容：</span>
+				<script id="editor" type="text/plain" style="width:100%;height:500px;"></script> 
+				<textarea name="news.content" rows="5" cols="20" style="display:none" id="contentid">
+				</textarea>
+			</dd>
+	
+		</dl>
+	 	<div class="ui-btn-area">
+	        <input type="button" id="newsSubmit" data-commit="address" class="btn_red" data-istempuser="false"  data-loading-text="正在提交..." value="保存">
+		</div>
+	  </form>   
+</div>
+
+</body></html>

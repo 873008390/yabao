@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>投诉建议</title>
+	<link rel="stylesheet" href="css/style_gh.css">
+</head>
+<body>
+	</head>
+<body>
+	<div id="news">
+		<!-- 头部 -->
+		<header id="header">
+			<div id="logo">
+					<a href="index.html">
+						<div class="logo1"><img src="image/logo1.png" alt=""></div>
+						<div class="logo2"><img src="image/logo2.png" alt=""></div>						
+					</a>		
+			</div>
+			<nav id="nav">
+				     	        	        	        
+			</nav>	
+		</header>
+		<div class="tender_content">
+				<ul class="breadcrumbs" id="navbar">
+				    
+				</ul>
+				<div class="tender_mian">
+					<div class="tender_mian_lf">
+						<div class="tender-nav news-nav" id="navlist">
+							
+						</div>
+						<div class="tender_contact">
+							<p class="tender_contact_t">联系我们<span>&nbsp;/&nbsp;Contact Us</span></p>
+							<div class="tender_contact_cot" id="contact">
+								
+							</div>
+						</div>
+						<div class="tender_search">
+							<p class="tender_contact_t">站内搜索<span>&nbsp;/&nbsp;Search</span></p>
+							<div class="tender_search_cot">
+								<input type="text" id="keyword">
+								<button id="search"><a >搜索</a></button>								
+							</div>
+						</div>
+						<img src="image/map.png" alt="" class="news_map">
+					</div>
+					<div class="tender_mian_rt complaint">
+						<div class="tender_mian_rt_ht">
+							<a href="" class="active">我要投诉</a>						
+						</div>
+						
+							<div class="complaint_ht">
+								<span>*</span> 标 题<input type="text" id="title" name="suggest.title">
+							</div>
+							<div class="tender_mian_rt_cot complaint_cot">								
+								<p class="complaint_cot_p1"><span>*</span> 投诉内容</p>
+								<textarea id="content" name="suggest.content"></textarea>
+								<input type="hidden" id="id" name="suggest.id" value="0"/>
+								<input type="hidden" id="type" name="suggest.type" value="1"/>
+							</div>	
+							<div class="complaint_ft clearfloat ">
+								<p class="complaint_cot_p"><span>*</span> 附 件</p>
+								<input type="file" id="upload" name="upload">	
+								<button id="submit">提交</button>
+								<button>重置</button>							
+							</div>							
+											
+					</div>
+				</div>					
+		</div>	
+	</div>
+	<footer class="clearfloat">
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.validate.js"></script>	
+	<script src="js/ajaxfileupload.js"></script>	
+	<script src="js/cgh_js.js"></script>		
+	<script src="js/alamo_js.js"></script>	
+	<script type="text/javascript">
+		islogin();
+		settypemenu(getParameter("menuid"));
+		getcontact();
+		
+		function ajaxFileUpload() {
+            var param = {
+						'suggest.content':encodeURIComponent($("#content").val()),
+						'suggest.title':encodeURIComponent($("#title").val()),
+						'suggest.id':0,
+						'suggest.type':1
+					};
+            $.ajaxFileUpload
+            (
+                {
+					url: 'suggest/addcontentfront.action', //用于文件上传的服务器端请求地址
+                    secureuri: false, //是否需要安全协议，一般设置为false
+                    fileElementId: 'upload', //文件上传域的ID
+                    dataType: 'json', //返回值类型 一般设置为json
+                    data:param,
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+                        alert(data.result);
+                        $("#title").val("");
+                        $("#content").val("");
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                        alert(e);
+                    }
+                }
+            )
+            return false;
+        }
+        
+		$("#submit").click(function(){
+			if($("#title").val()==''){
+				alert("请输入标题");
+				return false;
+			}else if($("#content").val()==''){
+				alert("请输入内容");
+				return false;
+			}
+			//$("#title").val();
+			//$("#content").val();
+			ajaxFileUpload();
+		});
+		$("#search").click(function(){
+			self.location = "search.html?keyword="+ escape($("#keyword").val());
+		});
+	</script>		
+</body>
+</html>

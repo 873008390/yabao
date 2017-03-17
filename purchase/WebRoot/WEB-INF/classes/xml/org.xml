@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="org" extends="json-default" namespace="/org">  
+        <action name="list" class="com.mbusiness.action.OrgListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="add" class="com.mbusiness.action.OrgAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="delete" class="com.mbusiness.action.OrgDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="syn" class="com.mbusiness.action.OrgsynAction" method="syn">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="group" class="com.mbusiness.action.ExportOrgExcelAction" method="group">
+            <result type="json"></result>
+        </action>
+        <action name="center" class="com.mbusiness.action.ExportOrgExcelAction" method="center">
+            <result type="json"></result>
+        </action>
+        <action name="son" class="com.mbusiness.action.ExportOrgExcelAction" method="son">
+            <result type="json"></result>
+        </action>
+    </package> 
+</struts>

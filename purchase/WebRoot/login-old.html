@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>亚宝采购共享平台</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript"> 
+
+  function currentData(){ 
+    var d=new Date(),str=''; 
+    str+=d.getFullYear()+'/'; 
+    str+=d.getMonth() + 1+'/'; 
+    str+=d.getDate(); 
+    return str; 
+} 
+setInterval(function(){$('#data').html(currentData)},6000);
+ 
+
+  function currentTime(){ 
+    var d=new Date(),str=''; 
+    str+=d.getHours()+':'; 
+    str+=d.getMinutes(); 
+    //str+= d.getSeconds()+'秒'; 	
+    return str; 
+} 
+
+</script> 
+</head>
+
+<body>
+<div class="mainBody">
+  <div class="title"></div>
+
+
+
+  <div class="form">
+  
+     <div class="win10_user"></div>
+    <form method="get" action="" name="" id="" >
+      <ul class="g_d_list">
+        <li>
+          <input class="m01" type="text" placeholder="用户名" name="nameid" id="nameid" maxlength="11" required>
+        </li>
+        
+        <li>
+          <input class="m02"  type="password" placeholder="密码" name="pwdid" id="pwdid" maxlength="20" required>
+          <input type="button" class="login_btn" value="" id="btnLogin">
+        </li> 
+        <li class="m03" id="error">&nbsp;</li> 
+      </ul>
+
+      
+    </form>
+</div>
+
+  <div id="top-bar" class="top-bar">
+    <div class="bar">
+      <span class="time"><ul><li id="time"></li><li id="data"></li></ul></span>
+    </div>
+
+        
+
+      
+  
+  
+  <div class="power">power by ShengZhen Mobile Soft Inc.</div>
+  
+  
+
+</div>
+</body>
+</html>
+
+<script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/mbusiness.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	function validaccount(){
+		$("#userv").html("");
+   		var result = 0;
+   		if($("#nameid").val()==null||$("#nameid").val()=="")
+	  	{
+			$("#error").html("请输入登录名");		  
+		}
+       	else{
+       		result = 1;
+       	}   
+       	return result;
+   	}
+ 	function  validpassword(){
+	 	$("#pwdv").html("");
+   		var result = 0;
+   		if($("#pwdid").val()==null||$("#pwdid").val()=="")
+	  	{
+			$("#error").html("请输入密码");		  
+		}
+       	else{
+       		result = 1;
+       	}   
+       	return result;
+   	}
+	$(document).ready(function(){	
+		$('#time').html(currentTime);
+	    $('#data').html(currentData);
+		setInterval(function(){$('#time').html(currentTime)},10000);
+		setInterval(function(){$('#data').html(currentData)},60000);
+		//setcopyright();
+		$("#nameid").val(getCookie("name"));
+	  	//setcopright();
+  		$("#nameid").blur(function(){
+	 		validaccount();
+	  	});
+	  	
+	  	$("#pwdid").blur(function(){
+			validpassword();
+	  	});
+	  	$("#pwdid").keydown(function(e){
+			var curkey = e.which;
+		  	if(curkey == 13){
+				$("#btnLogin").click();
+			  //return false;
+		  	}
+	  	});
+	   	$("#btnLogin").click(function(){
+			if(validaccount()==1&&validpassword()==1)
+		  	{
+			  	var mpwd = hex_md5($("#pwdid").val());
+			  	$("#pwdid").val(mpwd);
+			  	var params = {
+			     	  		'name':$("#nameid").val(),
+			     	  		'password':$("#pwdid").val(),
+							'corporationid':0
+								  		
+	          	}
+			  	$.post("user/login",params,function(res) {
+					if(res.result=="登录成功")
+					{
+						setCookie("name",$("#nameid").val());
+						location.href = "index.html";
+					}else{
+						var msg = "用户名或密码错误！";
+					    $("#error").html(msg);
+					}
+	
+				},"json");
+		  	}
+	  	});
+	});
+
+</script>

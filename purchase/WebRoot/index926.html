@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>亚宝药业采购共享平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/cgh_js.js"></script>
+</head>
+<body>
+    <header id="header">
+        <nav class="clearfix">
+            <div class="nav_lf pull-left">
+                <img src="images/logo1.png" alt="" class="logo pull-left">
+                <p class="pull-left nav_title">采购共享平台</p>
+            </div>
+            <div class="nav_rt pull-right">
+                <p class="setuser" id="setuser">管理员</p><span class="nav_rt_span">|</span>
+                <a onclick="logout();" style="cursor: pointer;" id="logout"> 退出</a>
+            </div>
+        </nav>
+    </header>
+    <div id="main" class=" clearfix">
+        <div class="main_lf pull-left">
+            <ul class="menu" id="nav">
+
+            </ul>
+        </div>
+        <div class="main_rt pull-left show_1" style="display:block">
+            <!-- <div class="main_rt_header">
+                <h3 id="miantitle">供应商</h3>
+            </div> -->
+            <div class="main_rt_content">
+                <iframe class="iframe src1" src="supplierlist.html?idtype=allwithlimit&typeid=0" name="main">
+ 
+                </iframe>
+            </div>
+        </div>
+ 
+    </div>
+    <footer>
+    </footer>
+</body>
+<script>
+    $(function(){
+        setcopyright2();
+        setUsername();
+        GetMenu();
+        setInterval("islogin()",60000);
+        Active2('.main_rt_menu','.main_rt_menu2');
+        function Active2(a,b){
+            var aBtn = $(a).find(b);
+            aBtn.click(function(){
+                aBtn.removeClass('active');
+                $(this).addClass('active');
+            })
+        }
+    })
+
+</script>
+<script src="js/mbusiness.js" ></script>
+</html>

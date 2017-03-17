@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="city" extends="json-default" namespace="/city">  
+        <action name="list" class="com.mbusiness.action.CityListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="add" class="com.mbusiness.action.CityAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="delete" class="com.mbusiness.action.CityDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+    </package> 
+</struts>

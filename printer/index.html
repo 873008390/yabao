@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天威飞马3D打印机管理平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/cgh_js.js"></script>
+</head>
+<body>
+<header id="header">
+    <nav class="clearfix">
+        <div class="nav_lf pull-left">
+            <img src="images/logo1.png" alt="" class="logo pull-left">
+            <p class="pull-left nav_title">天威飞马3D打印机管理平台</p>
+        </div>
+        <div class="nav_rt pull-right">
+            <p class="setuser" id="setuser">管理员</p><span class="nav_rt_span">|</span>
+            <a onclick="logout();" style="cursor: pointer;" id="logout"> 退出</a>
+        </div>
+    </nav>
+</header>
+<div id="main" class=" clearfix">
+    <div class="main_lf pull-left">
+        <ul class="menu" id="nav">
+            <li class="menu_1">
+                <a href="javascript:void(0)" class="menu_bt"><img class="img0">客户管理</a>
+                <ul class="menu_2">
+                    <li  class="menu_2_0 menuative"><a href="javascript:void(0)">客户<span></span></a></li>
+                    <ul class="main_rt_menu menu_3_1">
+                        <li class="main_rt_menu2"><a href="customerlist.html?idtype=allwithlimit&typeid=0" target="main">客户列表</a></li>
+                    </ul>
+                </ul>
+            </li>
+            <li class="menu_1">
+                <a href="javascript:void(0)" class="menu_bt"><img class="img1">咨询管理</a>
+                <ul class="menu_2">
+                    <li  class="menu_2_1 menuative"><a href="javascript:void(0)">咨询<span></span></a></li>
+                    <ul class="main_rt_menu menu_3_2">
+                        <li class="main_rt_menu2"><a href="iasklist.html?idtype=allwithlimit&typeid=0" target="main">咨询列表</a></li>
+                    </ul>
+                </ul>
+            </li>
+            <li class="menu_1">
+                <a href="javascript:void(0)" class="menu_bt"><img class="img2">基础资料 </a>
+                <ul class="menu_2">
+                    <li  class="menu_2_2 menuative"><a href="javascript:void(0)">产品<span></span></a></li>
+                    <ul class="main_rt_menu menu_3_3">
+                        <li class="main_rt_menu2"><a href="productlist.html?idtype=allwithlimit&typeid=0" target="main">产品列表</a></li>
+                    </ul>
+                    <li  class="menu_2_2 menuative"><a href="javascript:void(0)">报表<span></span></a></li>
+                    <ul class="main_rt_menu menu_3_4">
+                        <li class="main_rt_menu2"><a href="productlist.html?idtype=allwithlimit&typeid=0" target="main">报表列表</a></li>
+                    </ul>
+                </ul>
+            </li>
+            <li class="menu_1">
+                <a href="javascript:void(0)" class="menu_bt"><img class="img3">系统管理 </a>
+                <ul class="menu_2">
+                    <li  class="menu_2_3 menuative"><a href="javascript:void(0)">用户<span></span></a></li>
+                    <ul class="main_rt_menu menu_3_5">
+                        <li class="main_rt_menu2"><a href="userlist.html?idtype=allwithlimit&typeid=0" target="main">用户列表</a></li>
+                    </ul>
+                    <li  class="menu_2_3 menuative"><a href="javascript:void(0)">权限<span></span></a></li>
+                    <ul class="main_rt_menu menu_3_6">
+                        <li class="main_rt_menu2"><a href="permissionlist.html?idtype=allwithlimit&typeid=0" target="main">权限列表</a></li>
+                    </ul>
+                </ul>
+
+            </li>
+        </ul>
+    </div>
+    <div class="main_rt pull-left show_1" style="display:block">
+        <div class="main_rt_content">
+            <iframe class="iframe src1" src="customerlist.html?idtype=allwithlimit&typeid=0" name="main">
+
+            </iframe>
+        </div>
+    </div>
+
+</div>
+<footer>
+</footer>
+</body>
+<script>
+    $(function(){
+        setcopyright2();
+        setUsername();
+        Show();
+        $('.menu_2:first').css('display','block');
+        $('.menu_2_0:first').addClass('active');
+        $('.main_rt').find('.main_rt_menu li:eq(1)').addClass('active');
+        $('.img0').attr('src','images/user2.png');
+        $('.img1').attr('src','images/purchase.png');
+        $('.img2').attr('src','images/data.png');
+        $('.img3').attr('src','images/system.png');
+        $('.menu_3_1').css('display','block');
+        OK();
+        Tab3('.menu_2_0',0,'.menu_3_1');
+        Tab3('.menu_2_1',0,'.menu_3_2');
+        Tab3('.menu_2_2',0,'.menu_3_3');
+        Tab3('.menu_2_2',1,'.menu_3_4');
+        Tab3('.menu_2_3',0,'.menu_3_5');
+        Tab3('.menu_2_3',1,'.menu_3_6');
+        $('.menu_2_0:first').find('span').attr('class','span1');
+        /*        GetMenu();*/
+        setInterval("islogin()",60000);
+        Active2('.main_rt_menu','.main_rt_menu2');
+        function Active2(a,b){
+            var aBtn = $(a).find(b);
+            aBtn.click(function(){
+                aBtn.removeClass('active');
+                $(this).addClass('active');
+            })
+        }
+    })
+
+</script>
+<script src="js/mbusiness.js" ></script>
+</html>

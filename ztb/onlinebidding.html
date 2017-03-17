@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>在线投标</title>
+	<link rel="stylesheet" href="css/style_gh.css">
+</head>
+</head>
+<body>
+	<div id="news">
+		<!-- 头部 -->
+		<header id="header">
+			<div id="logo">
+					<a href="index.html">
+						<div class="logo1"><img src="image/logo1.png" alt=""></div>
+						<div class="logo2"><img src="image/logo2.png" alt=""></div>						
+					</a>		
+			</div>
+			<nav id="nav">
+					        	        	        
+			</nav>	
+		</header>
+		<div class="tender_content">
+				<ul class="breadcrumbs" id="navbar">
+				    
+				</ul>
+				<div class="tender_mian">
+					<div class="tender_mian_lf">
+						<div class="tender-nav news-nav" id="navlist">
+							
+						</div>
+						<div class="tender_contact">
+							<p class="tender_contact_t">联系我们<span>&nbsp;/&nbsp;Contact Us</span></p>
+							<div class="tender_contact_cot" id="contact">
+								
+							</div>
+						</div>
+						<div class="tender_search">
+							<p class="tender_contact_t">站内搜索<span>&nbsp;/&nbsp;Download</span></p>
+							<div class="tender_search_cot">
+								<input type="text" id="keyword">
+								<button id="search"><a >搜索</a></button>							
+							</div>
+						</div>
+						<img src="image/map.png" alt="" class="news_map">
+					</div>
+					<div class="tender_mian_rt complaint" id="tender_tab">
+						<div class="tender_mian_rt_ht">
+							<a href="javascript:;" class="active">在线投标</a>
+							<a href="javascript:;">投标管理</a>							
+						</div>
+						<form action="projectreply/addcontent.action" id="formfield" name="formfield" method="POST"  enctype ="multipart/form-data">
+								<ul class="qualifications_cot" style="display: block;">
+									<li  class="file-box">
+										<span>*</span> 保证金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input name="bond" id="bond" type="checkbox" value="" />
+										<input type="hidden" id="bondstatus" name="projectreply.bondstatus" value=""/>
+										<br><br>
+										<span>*</span> 文件说明<input type='text' name='projectreply.zdy10' id='memo' class='txt' />
+										<br><br>
+										<span>*</span> 资质材料<input type='text' name='path' id='path' class='txt' /> 
+										<input type='button' class='btn' value='选择' /> 
+										<input type="file" name="upload" class="file" id="upload" size="28" onchange="document.getElementById('path').value=this.value" /> 
+										<p>注意：</p >
+										<p style="line-height:30px;">1.上传文件请参考招标文件要求。</p >
+										<p style="line-height:30px;">2.超过100M的文件，请拆成多个压缩文件，分别上传，以避免网络不好时导致重传。</p>
+										<input type="hidden" id="projectid" name="projectreply.projectid" value=""/>
+									</li>
+									<div class="progressbar"><img src="image/jindutiao.gif" alt="进度条"></div>												
+									<button id="uploadbtn">上传</button>																								
+								</ul>
+								<ul class="qualifications_cot2" id="projectreplylist">
+																																							
+								</ul>																					
+						</form>													
+					</div>
+				</div>					
+		</div>			
+	</div>
+	<footer class="clearfloat">
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.validate.js"></script>		
+	<script src="js/cgh_js.js"></script>	
+	<script src="js/alamo_js.js"></script>	
+	<script type="text/javascript">
+		islogin();
+		settypemenu(getParameter("menuid"));
+		$("#projectid").val(getParameter("id"));
+		//$("#projecttitle").html(getParameter("title"));
+		getcontact();
+		if(!$.support.leadingWhitespace){
+			  $('input:checkbox').click(function () { 
+				   this.blur();   
+				   this.focus(); 
+			  });   
+		};
+		$("#bond").change(function() {
+			if($("#bond").is(":checked")){
+			 	//alert("checked");
+			 	$("#bondstatus").val("1");
+			 }else{
+			 	//alert("unchecked");
+			 	$("#bondstatus").val("0");
+			 }
+		});
+		$("#uploadbtn").click(function(){
+
+			if($("#bondstatus").val() == ''){
+				$("#bondstatus").val("0");
+				//alert($("#bondstatus").val());
+			}
+			var uploadfile =  $("#upload").val();
+			if(uploadfile == null || uploadfile == ''){
+				alert("请选择文件");
+				return false;
+			}else{
+				var len = uploadfile.replace(/\\/g,"_").split("_").length;
+				var uploadfilename = uploadfile.replace(/\\/g,"_").split("_")[len-1];
+				if(/.*[\u4e00-\u9fa5]+.*$/.test(uploadfilename))
+				{
+					alert("资质材料文件名不能含有中文！");
+					return false;
+				}
+			}
+			if($("#memo").val() == '' || $("#memo").val() == null){
+				alert("请输入文件说明");
+				return false;
+			}
+
+			$('.progressbar').css('display','block');
+			$("#memo").val(encodeURIComponent($("#memo").val()));
+		});
+		gettypeprojectreplyfile(0,100);
+		function deletefile(id){
+			if(confirm("确定要删除？")){
+				var param = {
+					'projectreplyfileid': id
+				};
+				$.post("projectreply/deletefile.action",param,function(res){
+					alert(res.result);
+					if(res.success){
+						self.location.reload();
+					}
+				});
+			}
+		}
+		$("#search").click(function(){
+			self.location = "search.html?keyword="+ escape($("#keyword").val());
+		});
+	</script>	
+	<script>
+		window.onload = function(){
+		           var oParent = document.getElementById('tender_tab');
+		           var oClass = document.getElementsByClassName('tender_mian_rt_ht')[0];
+		            var aBtn = oClass.getElementsByTagName('a');
+		           var aDiv = oParent.getElementsByTagName('ul');
+
+		            for(var i=0;i<aBtn.length;i++){         //遍历div1中的按钮
+		              
+		              aBtn[i].index=i;          //给aBth[]添加自定义属性
+		              aBtn[i].onclick=function (){
+		                
+		                for(var i=0;i<aBtn.length;i++){ //遍历按钮，将class清除
+		                  aBtn[i].className='';
+		                  aDiv[i].style.display='none';
+		                }
+		                this.className='active';
+		                aDiv[this.index].style.display='block';
+		              }
+		            }
+		          }
+	</script>			
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="iaskreply" extends="json-default" namespace="/iaskreply">  
+        <action name="list" class="com.mbusiness.action.IaskreplyListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="add" class="com.mbusiness.action.IaskreplyAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="delete" class="com.mbusiness.action.IaskreplyDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="onlineadd" class="com.mbusiness.action.IaskreplyonlineAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+    </package> 
+</struts>

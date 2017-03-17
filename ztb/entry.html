@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="stylesheet" href="css/style_gh.css">	
+</head>
+<body>
+	<div id="entry" class=" register">
+		<div class="register_header">
+			<div id="logo">
+				<a href="index.html">
+					<div class="logo1"><img src="image/logo1.png" alt=""></div>
+					<div class="logo2"><img src="image/logo2.png" alt=""></div>						
+				</a>		
+			</div>
+			<p class="register_p1">欢迎登录</p>
+			<p class="register_p2">没有账号？立即<a href="register.html">注册</a></p>
+		</div>
+		<div class="register_content">
+			<form action="" id="myform" method="post" action="">
+					<input type="hidden" id="type" value="login" />
+					<div>
+						<span><label>*</label> 用户名：</span> 
+						<input type="text"  name="name" id="name" class="required" /> 
+					</div> 
+					<div>
+						<span><label>*</label> 密 码：</span> 
+						<input id="pwd" type="password" name="pwd"  class="required"/>
+					</div> 					 
+					<div>
+						<span rowspan=2> 
+						<input type="submit" value="登录" id="loginsubmit" class="register_btn" />
+					</div> 	
+					<a href="password.html" class="forgetpassword">忘记密码</a>			
+			</form>
+			<div class="register_logo" >
+				<img src="image/register_logo.png" alt="">				
+			</div>
+	
+		</div>
+		<footer class="clearfloat">
+		</footer>		
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.validate.js"></script>		
+	<script src="js/cgh_js.js"></script>
+	<script src="js/alamo_js.js"></script>
+	<script src="js/md5.js"></script>				
+</body>
+</html>

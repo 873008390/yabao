@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>	
+	<constant name= "struts.multipart.maxSize" value="2097152000" />
+    <constant name="struts.devMode" value="false" />  
+    <constant name="struts.i18n.encoding" value="GBK"/>   
+    <package name="mbusiness_error" extends="struts-default">
+        <global-results>
+        	<result name="error">error.html</result>
+        </global-results>        
+        <global-exception-mappings>
+        	<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+        </global-exception-mappings>        
+    </package>      
+    
+    <include file="xml/admin.xml"></include>
+    <include file="xml/producttype.xml"></include>
+    <include file="xml/productunit.xml"></include>
+    <include file="xml/productspec.xml"></include>
+    <include file="xml/product.xml"></include>
+    <include file="xml/customer.xml"></include>
+    <include file="xml/iask.xml"></include>
+    <include file="xml/iaskreply.xml"></include>
+</struts>

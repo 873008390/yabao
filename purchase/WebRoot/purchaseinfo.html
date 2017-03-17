@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>亚宝药业采购共享平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/cgh_js.js"></script>
+    <script src="js/getParameter.js"></script>
+	<script type="text/javascript" src="js/Calendar4.js"></script>
+</head>
+<body id="newsupplier2">
+    <div class="newsupplier2_top_1">
+                <span rowspan="2">
+                    <input type="hidden" id="type" value="registercomplete" />
+                    <input type="submit" value="保存" id="registercomplete" class="register_btn" />
+                 </span>
+    </div>
+    <div style="margin-top:24px;margin-left:44px;">
+                采购单新增
+    </div>
+    <div class="newsupplier2_top_2">
+        <div class="newsupplier2_top_2_1">
+            <span><label>*</label>供应商：</span>
+            <input type="text" id="name" name="name" class="required"/>
+        </div>
+        <div class="newsupplier2_top_2_1">
+            <span><label>*</label>采购单号：</span>
+            <input type="text" id="purchaseno" name="purchaseno" class="required"/>
+        </div>
+        <div class="newsupplier2_top_2_1">
+            <span><label>*</label>采购日期：</span>
+            <input type="text" id="purchasedate" name="purchasedate" class="required" onclick="new Calendar().show(this);"/>
+        </div>
+    </div>
+    </div>
+    <div class="newsupplier_top2">
+        <ul class="clearfix">
+            <li class="pull-left active"><a href="javascript:void(0)">明细记录</a></li>
+            <li class="pull-left "><a href="javascript:void(0)">其它</a></li>
+        </ul>
+    </div>
+    <div class="newsupplier2_main clearfix" style="display: block;">
+        <iframe src="purchaseadddetail.html?idtype=id&typeid=0" width="100%" height="400" ></iframe>
+    </div>
+    <div class="newsupplier2_main clearfix">
+        <div>
+                    <span><label></label> 录单人：</span>
+                    <input type="text" id="createor"  name="creator" class="required" readonly="readonly"/>
+                </div>
+                <div>
+                    <span><label></label> 录单日期：</span>
+                    <input type="text" id="createdate"  name="createdate"  class="required" readonly="readonly"/>
+                </div>
+    </div>
+    <script>
+        $(function(){
+	        	getProvince();
+	        	$("#provinceid").change(function(){
+	        		//alert("1");
+	        		getCity();
+	        	});
+            Tab2('.pull-left','.newsupplier2_main');
+            function Tab2(a,b){
+                var aBtn = $(a);
+                var aDiv = $('#newsupplier2').find(b);
+                aBtn.click(function(){
+                    $('.newsupplier2_main').css('display', 'none');
+                    aBtn.removeClass('active');
+                    aBtn.eq($(this).index()).addClass('active');
+                    aDiv.eq($(this).index()).css('display', 'block');
+                })
+            }
+            /*表单验证*/
+            $("#registercomplete").click(function(){
+                if( $("#name").val()==""){
+                    alert("请输入名称");
+                    $("#name").focus();
+                    return false;
+                }
+                /* else if( $("#number").val()==""){
+                 alert("请输入编码");
+                 $("#number").focus();
+                 return false;
+                 }else if( $("#address").val()==""){
+                 alert("请输入详细地址");
+                 $("#address").focus();
+                 return false;
+                 }else if( $("#contact").val()==""){
+                 alert("请输入联系人");
+                 $("#contact").focus();
+                 return false;
+                 }else if( $("#phone").val()==""){
+                 alert("请输入手机号");
+                 $("#phone").focus();
+                 return false;
+                 }else if( $("#landline").val()==""){
+                 alert("请输入座机号");
+                 $("#landline").focus();
+                 return false;
+                 }else if( $("#fax").val()==""){
+                 alert("请输入传真号");
+                 $("#fax").focus();
+                 return false;
+                 }else if( $("#license").val()==""){
+                 alert("请输入营业执照");
+                 $("#license").focus();
+                 return false;
+                 }else if( $("#taxrate").val()==""){
+                 alert("请输入税率");
+                 $("#taxrate").focus();
+                 return false;
+                 }else if( $("#bank").val()==""){
+                 alert("请输入开户银行");
+                 $("#bank").focus();
+                 return false;
+                 }else if( $("#bankname").val()==""){
+                 alert("请输入开户名称");
+                 $("#bankname").focus();
+                 return false;
+                 }else if( $("#bankaccount").val()==""){
+                 alert("请输入银行账号");
+                 $("#bankaccount").focus();
+                 return false;
+                 } */
+
+                var param = {
+                    'supplier.id':getParameter("id"),
+                    'supplier.name':$("#name").val(),
+                    'supplier.address':$("#address").val(),
+                    'supplier.contactperson':$("#contact").val(),
+                    'supplier.phoneno':$("#phone").val(),
+                    'supplier.tel':$("#landline").val(),
+                    'supplier.fax':$("#fax").val(),
+                    'supplier.companycode':$("#license").val(),
+                    'supplier.taxrate':$("#taxrate").val(),
+                    'supplier.bank':$("#bank").val(),
+                    'supplier.bankname':$("#bankname").val(),
+                    'supplier.bankaccount':$("#bankaccount").val(),
+                    'supplier.invoicetype':$("#invoicetype").val(),
+                    'supplier.taxtype':$("#taxtype").val(),
+                    'supplier.zdy10':$("#fileurl").val(),
+                    'supplier.zdy9':encodeURIComponent($("#memos").val())
+                };
+                $.post("supplier/onlineadd.action",param,function(res){
+                    alert(res.result);
+                });
+                return false;
+            });
+
+        });
+			
+			var params = {
+				'idtype': "id",
+				'typeid': getParameter("id")
+			};
+			$.post("supplier/list.action", params, function(res){
+				var supplier = res.suppliers;
+				if(supplier[0].id > 0){
+						$("#name").val(supplier[0].name);
+                    	$("#address").val(supplier[0].address);
+                    	$("#contact").val(supplier[0].contactperson);
+                    	$("#phone").val(supplier[0].phoneno);
+                    	$("#landline").val(supplier[0].tel);
+                    	$("#fax").val(supplier[0].fax);
+                    	$("#license").val(supplier[0].companycode);
+                    	$("#taxrate").val(supplier[0].taxrate);
+                    	$("#bank").val(supplier[0].bank);
+                    	$("#bankname").val(supplier[0].bankname);
+                    	$("#bankaccount").val(supplier[0].bankaccount);
+                    	$("#invoicetype").val(supplier[0].invoicetype);
+                    	$("#taxtype").val(supplier[0].taxtype);
+                    	$("#provinceid").val(supplier[0].provinceid);
+                    	$("#cityid").val(supplier[0].cityid);
+				}
+			});
+
+        $("#uploadbtn").click(function(){
+            if($("#path").val() == '' || $("#path").val() == null){
+                alert("请选择文件");
+            }else{
+                ajaxFileUpload();
+            }
+        });
+	  	
+		  	function getProvince(){
+			  	var params = {
+			  		'idtype': "all",
+			  		'typeid': "0"
+			  	};
+			  	$.post("province/list.action", params, function(res){
+			  		var provinces = res.provinces;
+			  		if(provinces[0].id > 0){
+			  			var inner = "";
+			  			for(var i=0;i<provinces.length;i++){
+			  				inner += "<option value="+ provinces[i].id +">"+ provinces[i].name +"</option>"
+			  			}
+			  			$("#provinceid").html(inner);
+			  			getCity();
+			  		}
+			  	});
+		  	}
+		  	
+		  	function getCity(){
+				  	var params = {
+				  		'idtype': "province",
+				  		'typeid': $("#provinceid").val()
+				  	};
+				  	$.post("city/list.action", params, function(res){
+				  		var citys = res.citys;
+				  		if(citys[0].id > 0){
+				  			var inner = "";
+				  			for(var i=0;i<citys.length;i++){
+				  				inner += "<option value="+ citys[i].id +">"+ citys[i].name +"</option>"
+				  			}
+				  			$("#cityid").html(inner);
+				  		}
+				  	});
+		  	}
+    </script>
+</body>
+</html>

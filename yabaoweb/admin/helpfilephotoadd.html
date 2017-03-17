@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<link href="css/layout.min.css" rel="stylesheet" type="text/css">
+	<link href="css/jquery ui-1.9.2.css" rel="stylesheet" type="text/css"/>
+	<link href="css/primeui/primeui-2.2.RC1-min.css" rel="stylesheet" type="text/css"/>
+	<link href="css/primeui/theme.css" rel="stylesheet" type="text/css"/>
+	<link href="css/fa/font-awesome.css" rel="stylesheet" type="text/css"/>
+	<link href="css/nav.css" rel="stylesheet" type="text/css">
+	<link href="css/mbusiness.css" rel="stylesheet" type="text/css">	
+    
+    <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/jquery ui-1.11.4.js"></script>
+    <script type="text/javascript" src="js/primeui/primeui-2.2.RC1-min.js"></script>
+
+<script>
+var ui = 'touch';
+</script>
+
+<script>
+function GetRequest() {
+
+   var url = location.search; //获取url中"?"符后的字串
+
+   var theRequest = new Object();
+
+   if (url.indexOf("?") != -1) {
+
+      var str = url.substr(1);
+
+      strs = str.split("&");
+
+      for(var i = 0; i < strs.length; i ++) {
+
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+
+      }
+
+   }
+
+   return theRequest;
+
+}
+
+$(document).ready(function(){  
+  var Request = new Object();
+  Request = GetRequest();
+  $("#cid").val(Request["id"]);
+  var params = {
+		     	  		'idtype':'photo' ,
+						'typeid':'0'       
+						
+						}
+  $.post("../helpfile/list.action",params,function(res) {
+		var helpfiles = res.helpfiles;
+		if(helpfiles[0].id>0){	
+			if(helpfiles[0].icon != ''){
+				$("#img").html("<img src='../"+ helpfiles[0].icon +"' height='150'/>");
+				$("#helpfileSubmit").val("修改");
+			}else{
+				$("#img").html("没有图片");
+			}
+		}
+	},"json");		
+ 
+  $("#helpfileSubmit").click(function(){
+	  var content = "";
+	  //alert(content);
+	  $("#contentid").html(encodeURIComponent(content));
+	  if(document.getElementById("path").value == '' && $("#img").html() == "没有图片"){
+		  alert("请选择图片");
+	  }else{
+		  $('#addArticleF').submit();
+	  }
+
+  });
+});
+</script>
+</head>
+<body>
+<div id="actionInfo"> </div>
+<div class="clear"></div>
+<div id="newdiv" class="connerdiv">
+	  <form id="addArticleF" name="addArticleForm" action="../helpfile/addcontent" method="POST"  enctype ="multipart/form-data">
+	    <dl class="connerbox">
+			<dd>
+	    		<span>
+	    			<table width="100%" height="100%">
+	    				<tr>
+	    					<td><a onclick="javascript:history.back();" style="cursor:pointer;"><<返回</a></td>
+	    					<td>新增投标流程图</td>
+	    					<td>&nbsp;</td>
+	    				</tr>
+	    			</table>
+	    		</span>
+	    	</dd>
+			<dd>
+				<span class="form_hd">图片：</span>
+				<span class="form_td">
+			      	<input name="upload" id="upload" type="file" value="" maxlength="6" class="text_input"  onchange="path.value=this.value" >
+			      	<input type="hidden" name="path" id="path" style="border:0px" size="10" style="margin-top:10px">
+			    </span>
+				<span class="form_td">
+			      	<input type="hidden" name="helpfile.id" id="cid">
+			      	<input type="hidden" name="helpfile.type" id="type" value="0">
+			      	<span id="img"></span>
+			    </span>
+			</dd>
+			<dd>
+				<textarea name="helpfile.content" rows="5" cols="20" style="display:none" id="contentid">
+				</textarea>
+			</dd>
+	
+		</dl>
+	 	<div class="ui-btn-area">
+	        <input type="button" id="helpfileSubmit" data-commit="address" class="btn_red" data-istempuser="false"  data-loading-text="正在提交..." value="保存">
+		</div>
+	  </form>   
+</div>
+
+</body></html>

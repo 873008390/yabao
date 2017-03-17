@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/purchaseyabao</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">1</property>
+<!--         <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="connection.url">jdbc:sqlserver://localhost:1433;DatabaseName=purchaseyabao</property>
+        <property name="connection.username">sa</property>
+        <property name="connection.password">1</property> -->
+        
+        <!-- C3P0连接池设定-->        
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <!-- 最大连接数-->
+        <property name="hibernate.c3p0.max_size">100</property> 
+        <!-- 最小连接数 -->
+        <property name="hibernate.c3p0.min_size">10</property>
+        <!-- 超时时间，单位秒 -->
+        <property name="hibernate.c3p0.timeout">50</property>
+        <!-- 最大的PreparedStatement的数量 -->
+        <property name="hibernate.c3p0.max_statements">0</property>
+        <!-- 每隔120秒检查连接池里的空闲连接 ，单位是秒-->
+        <property name="hibernate.c3p0.idle_test_period">20</property>
+        <!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
+        <property name="hibernate.c3p0.acquire_increment">10</property>
+        <!-- 每次都验证连接是否可用-->
+        <property name="hibernate.c3p0.validate">true</property> 
+
+        <!-- JDBC connection pool (use the built-in) 
+        <property name="connection.pool_size">1</property>-->
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+       <!--  <property name="dialect">org.hibernate.dialect.SQLServerDialect</property> -->
+		
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">false</property>
+        
+        <mapping class="com.mbusiness.model.Users"/>
+        
+        <mapping class="com.mbusiness.model.Permission"/>
+        
+        <mapping class="com.mbusiness.model.Catalog"/>
+        
+        <mapping class="com.mbusiness.model.Menu"/>
+        
+        <mapping class="com.mbusiness.model.Log"/>
+        
+        <mapping class="com.mbusiness.model.Keyvalue"/>
+        
+        <mapping class="com.mbusiness.model.Customer"/>
+        
+        <mapping class="com.mbusiness.model.Producttype"/>
+        
+        <mapping class="com.mbusiness.model.Productspec"/>
+        
+        <mapping class="com.mbusiness.model.Productunit"/>
+        
+        <mapping class="com.mbusiness.model.Product"/>
+        
+        <mapping class="com.mbusiness.model.Iask"/>
+        
+        <mapping class="com.mbusiness.model.Iaskreply"/>
+        
+        <mapping class="com.mbusiness.model.Randomcode"/>
+        
+        <mapping class="com.mbusiness.model.Permissiongroup"/>
+        
+        <mapping class="com.mbusiness.model.Customerphoto"/>
+        
+        <mapping class="com.mbusiness.model.Mailset"/>
+        
+        <mapping class="com.mbusiness.model.Supplier"/>
+        
+        <mapping class="com.mbusiness.model.Supplierfile"/>
+        
+        <mapping class="com.mbusiness.model.Sequence"/>
+        
+        <mapping class="com.mbusiness.model.City"/>
+        
+        <mapping class="com.mbusiness.model.Province"/>
+        
+        <mapping class="com.mbusiness.model.Town"/>
+        
+        <mapping class="com.mbusiness.model.Org"/>
+        
+        <mapping class="com.mbusiness.model.Department"/>
+        
+        <mapping class="com.mbusiness.model.Purchase"/>
+        
+        <mapping class="com.mbusiness.model.Purchasedetail"/>
+        
+        <mapping class="com.mbusiness.model.Auditgroup"/>
+        
+        <mapping class="com.mbusiness.model.Auditgroupdetail"/>
+        
+        <mapping class="com.mbusiness.model.Auditgroupuser"/>
+        
+        <mapping class="com.mbusiness.model.Auditlog"/>
+
+    </session-factory>
+
+</hibernate-configuration>

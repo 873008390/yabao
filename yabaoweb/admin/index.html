@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>亚宝集团官网管理平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/cgh_js.js"></script>
+</head>
+<body>
+    <header id="header">
+        <nav class="clearfix">
+            <div class="nav_lf pull-left">
+                <img src="images/logo1.png" alt="" class="logo pull-left">
+                <p class="pull-left nav_title">亚宝集团官网管理平台</p>
+            </div>
+            <div class="nav_rt pull-right">
+                <p class="setuser" id="setuser">管理员</p><span class="nav_rt_span">|</span>
+                <a onclick="logout();" style="cursor: pointer;" id="logout"> 退出</a>
+            </div>
+        </nav>
+    </header>
+    <div id="main" class=" clearfix">
+        <div class="main_lf pull-left">
+            <ul class="menu" id="nav">
+                <li class="menu_1">
+                    <a href="javascript:void(0)" class="menu_bt">栏目</a>
+                    <ul class="menu1 menu_2">
+                        <li  class="menu_2_0 active"><a href="javascript:void(0)">栏目管理</a></li>
+                        <li class="menu_2_0"><a href="javascript:void(0)">联系我们</a></li>
+                        <li class="menu_2_0"><a href="javascript:void(0)">招贤纳士</a></li>
+                        <li class="menu_2_0"><a href="javascript:void(0)">图片更新</a></li>
+                        <li class="menu_2_0"><a href="javascript:void(0)">法律声明</a></li>
+                        <li class="menu_2_0"><a href="javascript:void(0)">友情链接</a></li>
+                    </ul>
+                </li>
+                <li class="menu_1">
+                    <a href="javascript:void(0)" class="menu_bt">系统管理</a>
+                    <ul class="menu3 menu_2">
+                        <li class="menu_2_1"><a href="javascript:void(0)">用户</a></li>
+                        <li class="menu_2_1"><a href="javascript:void(0)">权限</a></li>
+                    </ul>
+                </li>
+<!--                <li class="menu_1">
+                    <a class=" menu_bt" href="javascript:void(0)">系统管理</a>
+                    <ul class="menu4 menu_2">
+                        <li class="menu_2_2"><a href="javascript:void(0)">权限</a></li>
+                        <li class="menu_2_2"><a href="javascript:void(0)">用户管理</a></li>
+                    </ul>
+                </li>-->
+            </ul>
+        </div>
+        <div class="main_rt pull-left show_1" style="display:block">
+            <div class="main_rt_header">
+                <h3>栏目</h3>
+                <ul class="main_rt_menu">
+                    <li class="pull-left main_rt_menu2"><a href="cataloglist.html?idtype=allwithlimit&typeid=0" target="main">列表</a></li>
+                </ul>
+            </div>
+            <div class="main_rt_content">
+                <iframe class="iframe src1" src="cataloglist.html?idtype=allwithlimit&typeid=0" name="main">
+ 
+                </iframe>
+            </div>
+        </div>
+        <div class="main_rt pull-left show_1">
+            <div class="main_rt_header">
+                <h3>联系我们</h3>
+                <ul class="main_rt_menu">
+                    <li class="pull-left main_rt_menu2"><a href="contactuslist.html?idtype=allwithlimit&typeid=0" target="main1">列表</a></li>
+                </ul>
+            </div>
+            <div class="main_rt_content">
+                <iframe class="iframe src2" src="" name="main1">
+
+                </iframe>
+            </div>
+        </div>
+        <div class="main_rt pull-left show_1">
+            <div class="main_rt_header">
+                <h3>招贤纳士</h3>
+                <ul class="main_rt_menu">
+                    <li class="pull-left main_rt_menu2"><a href="zhaopinadd.html?idtype=allwithlimit&typeid=0" target="main2">	新增/修改</a></li>
+                </ul>
+            </div>
+            <div class="main_rt_content">
+                <iframe class="iframe src3" src="" name="main2">
+
+                </iframe>
+            </div>
+        </div>
+        <div class="main_rt pull-left show_1">
+            <div class="main_rt_header">
+                <h3>图片更新</h3>
+                <ul class="main_rt_menu">
+                    <li class="pull-left main_rt_menu2"><a href="indexphotolist.html?idtype=allwithlimit&typeid=0" target="main3">列表</a></li>
+                </ul>
+            </div>
+            <div class="main_rt_content">
+                <iframe class="iframe src4" src="" name="main3">
+
+                </iframe>
+            </div>
+        </div>
+        <div class="main_rt pull-left show_1">
+            <div class="main_rt_header">
+                <h3>法律声明</h3>
+                <ul class="main_rt_menu">
+                    <li class="pull-left main_rt_menu2"><a href="legaladd.html?idtype=allwithlimit&typeid=0" target="main4">新增/修改</a></li>
+                </ul>
+            </div>
+            <div class="main_rt_content">
+                <iframe class="iframe src5" src="" name="main4">
+
+                </iframe>
+            </div>
+        </div>
+        <div class="main_rt pull-left show_1">
+            <div class="main_rt_header">
+                <h3>友情链接</h3>
+                <ul class="main_rt_menu">
+                    <li class="pull-left main_rt_menu2"><a href="youqinglianjielist.html?idtype=allwithlimit&typeid=0" target="main5">列表</a></li>
+                </ul>
+            </div>
+            <div class="main_rt_content">
+                <iframe class="iframe src6" src="" name="main5">
+
+                </iframe>
+            </div>
+        </div>
+        <div class="main_rt pull-left show_2">
+            <div class="main_rt_header">
+                <h3>用户</h3>
+                <ul class="main_rt_menu">
+                    <li class="pull-left main_rt_menu2"><a href="userlist.html?idtype=allwithlimit&typeid=0" target="main6">列表</a></li>
+                </ul>
+            </div>
+            <div class="main_rt_content">
+                <iframe class="iframe src7" src="" name="main6">
+
+                </iframe>
+            </div>
+        </div>
+        <div class="main_rt pull-left show_2">
+            <div class="main_rt_header">
+                <h3>权限</h3>
+                <ul class="main_rt_menu">
+                    <li class="pull-left main_rt_menu2"><a href="permissionlist.html?idtype=allwithlimit&typeid=0" target="main7">列表</a></li>
+                </ul>
+            </div>
+            <div class="main_rt_content">
+                <iframe class="iframe src8" src="" name="main7">
+
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <footer>
+    </footer>
+</body>
+<script>
+    $(function(){
+        setcopyright();
+        Show();
+        Tab('.menu_2_0','.show_1');
+        Tab('.menu_2_1','.show_2');
+        $('.menu_2:first').css('display','block');
+        $('.main_rt').find('.main_rt_menu li:eq(0)').addClass('active');
+        OK();
+        setcopyright2();
+        setUsername();
+        setInterval("islogin()",60000);
+        /*GetMenu();*/
+        Active1('.menu_2','li');
+        Active2('.main_rt_menu','.main_rt_menu2');
+        function Active2(a,b){
+            var aBtn = $(a).find(b);
+            aBtn.click(function(){
+                aBtn.removeClass('active');
+                $(this).addClass('active');
+            })
+        }
+    })
+
+</script>
+<script src="js/mbusiness.js" ></script>
+</html>

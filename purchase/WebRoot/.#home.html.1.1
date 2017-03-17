@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+    <!-- 引入 ECharts 文件 -->
+    <script src="js/echarts.min.js"></script>
+    <script src="js/cgh_js.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/getParameter.js"></script>
+	<script type="text/javascript" src="js/Calendar4.js"></script>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/chart.css">
+</head>
+<body style="background-color: #EFEFEF; height:650px;" >
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div class="cen">
+	<div class="supplier_none">
+	      	<p>请选择供应商</p>     
+	        <iframe id="iframe" src="supplierlist-main2.html?idtype=searchwithlimit&typeid=auditstatus=1">
+	            
+	        </iframe>
+	</div>  
+    <div class="row0">
+
+	    <div class="supplier_none2">
+	      	<p>请选择物料</p>     
+	        <iframe id="iframe" src="productlist-main2.html?idtype=allwithlimit&typeid=0">
+	            
+	        </iframe>
+	    </div>	     
+        <div class="btnus">
+            <div class="newsupplier">
+                <span>供应商：</span>
+                <input type="text" id="supplier" name="supplier"><button class="supplier_btn">选择</button>
+            </div>
+            <div class="newsupplier">
+                <span><label></label>物&nbsp&nbsp&nbsp&nbsp料：</span>
+                <input type="text" id="product" name="product" class="required"><button class="supplier_btn2">选择</button><!-- <button class="search_btn1">搜索</button> -->
+            </div>
+            <div class="newsupplier">
+                <input type="text" id="startdate" name="startdate" class="required" placeholder="开始时间" onclick="new Calendar().show(this);">
+            </div>
+            <div class="newsupplier">
+                <input type="text" id="enddate" name="enddate" class="required" placeholder="结束时间" onclick="new Calendar().show(this);"><button class="search_btn2" id="search">搜索</button>
+            </div>
+        </div>
+        <div class="gys-con">
+            <div class="jiage" id="jiage"></div>
+        </div>
+        <div class="cgd-con">
+            <div class="bianhua" id="bianhua"></div>
+        </div>
+
+    </div>
+
+    <div class="row2">
+        <div class="dsh-con">
+            <div class="dsh">
+                <div class="dsh-s">
+                    <a class="bigzi" id="myauditing">0</a>
+                </div>
+            </div>
+            <span>待审核供应商数</span>
+        </div>
+        <div class="wsh-con">
+            <div class="wsh">
+                <div class="wsh-s">
+                    <a class="bigzi" id="myaudited">0</a>
+                </div>
+            </div>
+            <span>我审核通过的供应商数</span>
+        </div>
+        <div class="wlr-con">
+            <div class="wlr">
+                <div class="wlr-s">
+                    <a class="bigzi" id="myrefuse">0</a>
+                </div>
+            </div>
+            <span>我不同意的次数</span>
+        </div>
+    </div>
+
+    <div class="row1">
+        <div class="gys-con">
+            <div class="gys" id="gys"></div>
+        </div>
+        <div class="cgd-con">
+            <div class="cgd" id="cgd"></div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+
+<script>
+
+        function getData1(name){ 
+            //alert(name);
+            $("#supplier").val(name);
+            close();
+        }
+        function getData2(name){ 
+            //alert(name);
+            $("#product").val(name);
+            close();
+        }
+        function close() {
+            $('.supplier_none').hide();
+             $('.supplier_none2').hide();
+        }
+$(function(){ 
+
+        $('.supplier_btn').click(function () {
+               $('.supplier_none').show();
+        })
+         $('.supplier_btn2').click(function () {
+               $('.supplier_none2').show();
+        })       
+	// 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('gys'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '近六个月供应商数量变化',
+            textStyle: {
+                color: '#4CB643',
+                fontSize:16,
+            },
+        },
+
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:[]
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: []
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:'供应商数量',
+                type:'line',
+                stack: '总量',
+                data:[]
+            }
+        ]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+	myChart.showLoading();
+	var param ={
+		'idtype': "quantity",
+		'typeid': "0"
+	};
+	$.post("supplier/echart.action",param,function(res){
+		myChart.hideLoading();
+		myChart.setOption({
+		        xAxis: {
+		            data: res.catalogs
+		        },
+		        series: [{
+		            // 根据名字对应到相应的系列
+		            name: '供应商数量',
+		            data: res.data
+		        }]
+		});
+	});
+
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart1 = echarts.init(document.getElementById('cgd'));
+    var option = {
+        title: {
+            text: '近六个月采购金额变化',
+            textStyle: {
+                color: '#4CB643',
+                fontSize:16,
+            },
+        },
+
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:[],
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: []
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:'采购金额',
+                type:'line',
+                stack: '总量',
+                data:[]
+            }
+        ]
+    };
+    myChart1.setOption(option);
+	myChart1.showLoading();
+	var param ={
+		'idtype': "money",
+		'typeid': "0"
+	};
+	$.post("purchase/echart.action",param,function(res){
+		myChart1.hideLoading();
+		myChart1.setOption({
+		        xAxis: {
+		            data: res.catalogs
+		        },
+		        series: [{
+		            // 根据名字对应到相应的系列
+		            name: '采购金额',
+		            data: res.data
+		        }]
+		});
+	});
+	
+	var paramsupplier = {
+		'idtype': "auditquantity",
+		'typeid': "0"
+	}
+	$.post("supplier/list.action",paramsupplier,function(res){
+		var suppliers = res.suppliers;
+		if(suppliers[0].id > 0){
+			$("#myauditing").html(suppliers[0].zdy2);
+			$("#myaudited").html(suppliers[0].zdy3);
+			$("#myrefuse").html(suppliers[0].zdy4);
+		}
+	});
+	
+	function setHeight(){
+		//取到窗口的高度 
+		var winH = $(window).height(); 
+		//取到页面的高度 
+		var bodyH = $(document).height(); 
+		if(bodyH > winH){ 
+			$(window.parent.document).find("#test").css("height",""+bodyH+"px");
+		}else{ 
+			$(window.parent.document).find("#test").css("height",""+winH+"px");
+		} 
+	}
+    setHeight();
+	var parampurchase = {
+		'idtype': "last",
+		'typeid': "0"
+	}
+	$.post("purchase/detaillist.action",parampurchase,function(res){
+		var purchasedetails = res.purchasedetails;
+		var list = "";
+		if(purchasedetails[0].id > 0){
+			for(var i=0;i<purchasedetails.length;i++){
+				list += "<tr><td>"+ purchasedetails[i].zdy2 +"</td><td>"+ purchasedetails[i].zdy3 +"</td><td>"+ purchasedetails[i].zdy5 +"</td><td>"+ purchasedetails[i].zdy6 +"</td><td>"+ purchasedetails[i].zdy7 +"</td><td>"+ purchasedetails[i].price +"</td>";
+				list += "</tr>";
+			}
+		}else{
+			list += "<tr><td>"+ purchasedetails[0].zdy3 +"</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>";
+		}
+		$("#list").html(list);
+
+	});
+	
+	// 基于准备好的dom，初始化echarts实例
+var myChart2 = echarts.init(document.getElementById('jiage'));
+
+// 指定图表的配置项和数据
+var option = {
+    title: {
+        text: '指定供应商物料价格变化',
+        textStyle: {
+            color: '#4CB643',
+            fontSize:16,
+        },
+    },
+
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['供应商数量']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: []
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'供应商物料价格',
+            type:'line',
+            stack: '总量',
+            data:[]
+        }
+    ]
+};
+// 使用刚指定的配置项和数据显示图表。
+	myChart2.setOption(option);
+	myChart2.showLoading();
+	var param ={
+		'idtype': "supplierproductprice",
+		'typeid': "0"
+	};
+	$.post("purchase/priceechart.action",param,function(res){
+		myChart2.hideLoading();
+		myChart2.setOption({
+		        xAxis: {
+		            data: res.catalogs
+		        },
+		        series: [{
+		            // 根据名字对应到相应的系列
+		            name: '供应商物料价格',
+		            data: res.data
+		        }]
+		});
+	});
+	
+	
+// 基于准备好的dom，初始化echarts实例
+var myChart3 = echarts.init(document.getElementById('bianhua'));
+var option = {
+    title: {
+        text: '物料价格变化',
+        textStyle: {
+            color: '#4CB643',
+            fontSize:16,
+        },
+    },
+
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        //data:['物料价格'],
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: []
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'物料价格',
+            type:'line',
+            stack: '总量',
+            data:[]
+        }
+    ]
+};
+	myChart3.setOption(option);
+	myChart3.showLoading();
+	
+	var param ={
+		'idtype': "productprice",
+		'typeid': "0"
+	};
+	$.post("purchase/priceechart.action",param,function(res){
+		myChart3.hideLoading();
+		myChart3.setOption({
+		        xAxis: {
+		            data: res.catalogs
+		        },
+		        series: [{
+		            // 根据名字对应到相应的系列
+		            name: '物料价格',
+		            data: res.data
+		        }]
+		});
+	});
+	
+	
+});
+
+
+
+$("#search").click(function(){
+			var typeid = "";
+			var typeid2 = "";
+     		if($("#product").val() == ""){
+				alert("请选择物料");
+     		}  			
+			if($("#supplier").val() != ""){
+       			if(typeid == ""){
+       				typeid = "supplier="+ encodeURIComponent($("#supplier").val());
+       			}else{
+       				typeid += "_supplier="+ encodeURIComponent($("#supplier").val());
+       			}
+			}
+     		if($("#product").val() != ""){
+     			if(typeid2 == ""){
+     				typeid2 = "product="+ encodeURIComponent($("#product").val());
+     			}else{
+     				typeid2 += "_product="+ encodeURIComponent($("#product").val());
+     			}
+     			if(typeid != ""){
+     				typeid += "_product="+ encodeURIComponent($("#product").val());
+     			}
+     		}   		
+			if($("#startedate").val() != ""){
+				if(typeid2 != ""){
+       				typeid2 += "_startedate="+ $("#startedate").val();
+       			}
+       			if(typeid != ""){
+       				typeid += "_startedate="+ $("#startedate").val();
+       			}
+       		}
+       		if($("#enddate").val() != ""){
+       			if(typeid2 != ""){
+       				typeid2 += "_enddate="+ $("#enddate").val();
+       			}
+       			if(typeid != ""){
+       				typeid += "_enddate="+ $("#enddate").val();
+       			}
+       		}
+       		
+       		if(typeid == ""){
+       			typeid = "0";
+       		}
+       		if(typeid2 == ""){
+       			typeid2 = "0";
+       		}
+       		
+// 基于准备好的dom，初始化echarts实例
+var myChart2 = echarts.init(document.getElementById('jiage'));
+
+// 指定图表的配置项和数据
+var option = {
+    title: {
+        text: '供应商物料价格表',
+        textStyle: {
+            color: '#4CB643',
+            fontSize:16,
+        },
+    },
+
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['供应商数量']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: []
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'供应商物料价格',
+            type:'line',
+            stack: '总量',
+            data:[]
+        }
+    ]
+};
+// 使用刚指定的配置项和数据显示图表。
+	myChart2.setOption(option);
+	myChart2.showLoading();
+	var param ={
+		'idtype': "supplierproductprice",
+		'typeid': typeid
+	};
+	$.post("purchase/priceechart.action",param,function(res){
+		myChart2.hideLoading();
+		myChart2.setOption({
+		        xAxis: {
+		            data: res.catalogs
+		        },
+		        series: [{
+		            // 根据名字对应到相应的系列
+		            name: '供应商物料价格',
+		            data: res.data
+		        }]
+		});
+	});
+	
+	
+// 基于准备好的dom，初始化echarts实例
+var myChart3 = echarts.init(document.getElementById('bianhua'));
+var option = {
+    title: {
+        text: '物料价格变化',
+        textStyle: {
+            color: '#4CB643',
+            fontSize:16,
+        },
+    },
+
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['物料价格'],
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: []
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'物料价格',
+            type:'line',
+            stack: '总量',
+            data:[]
+        }
+    ]
+};
+	myChart3.setOption(option);
+	myChart3.showLoading();
+	
+	var param ={
+		'idtype': "productprice",
+		'typeid': typeid2
+	};
+	$.post("purchase/priceechart.action",param,function(res){
+		myChart3.hideLoading();
+		myChart3.setOption({
+		        xAxis: {
+		            data: res.catalogs
+		        },
+		        series: [{
+		            // 根据名字对应到相应的系列
+		            name: '物料价格',
+		            data: res.data
+		        }]
+		});
+	});
+       		
+});
+</script>

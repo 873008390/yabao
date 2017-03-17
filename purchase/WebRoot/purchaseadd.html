@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>亚宝药业采购共享平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/cgh_js.js"></script>
+    <script src="js/getParameter.js"></script>
+	<script type="text/javascript" src="js/Calendar4.js"></script>
+</head>
+<body id="newsupplier2">
+   
+    <div class="supplier_none">
+      	<p>请选择供应商</p>     
+        <iframe id="iframe" src="supplierlist-main2.html?idtype=searchwithlimit&typeid=auditstatus=1">
+            
+        </iframe>
+    </div>
+    <div class="newsupplier2_top_h1">
+                采购单新增
+    </div>
+    <div class="newsupplier2_top_1">
+                <span rowspan="2">
+                    <input type="submit" value="保存" id="save" class="register_btn" />
+                 </span>
+    </div>
+
+    <div class="newsupplier2_top_2 clearfix">
+        <div class="newsupplier2_top_2_1">
+            <span><label>*</label>供应商：</span>
+            <input type="text" id="supplier" name="supplier" onKeyUp="textSeach3()" onFocus="textShuru2()"><button class="supplier_btn">选择</button>           
+        </div>
+	        <iframe id="iframe4" name="iframe4" class="textseach3" src="supplierlist-main2.html?idtype=search&typeid=999999">
+	            
+	        </iframe>         
+        <div class="newsupplier2_top_2_1">
+            <span><label></label>采购单号：</span>
+            <input type="text" id="purchaseno" name="purchaseno" class="required" value="自动生成" readOnly="readonly"/>
+        </div>
+        <div class="newsupplier2_top_2_1">
+            <span><label></label>采购日期：</span>
+            <input type="text" id="purchasedate" name="purchasedate" class="required" onClick="new Calendar().show(this);"/>
+        </div>
+    </div>
+    </div>
+    <div class="newsupplier_top2">
+        <ul class="clearfix">
+            <li class="pull-left active"><a href="javascript:void(0)">明细记录</a></li>
+            <li class="pull-left "><a href="javascript:void(0)">其它</a></li>
+        </ul>
+    </div>
+    <div class="newsupplier2_main clearfix" style="display: block;">
+        <iframe id="frame" src="purchaseadddetail.html?idtype=id&typeid=0" class="iframepurchase"></iframe>
+    </div>
+    <div class="newsupplier2_main clearfix">
+        <div>
+                    <span><label></label> 录单人：</span>
+                    <input type="text" id="creator"  name="creator" class="required" readonly="readonly"/>
+                </div>
+                <div>
+                    <span><label></label> 日期：</span>
+                    <input type="text" id="createdate"  name="createdate"  class="required" readonly="readonly"/>
+                </div>
+    </div>
+    <script>
+        $(function(){
+            var s = 0;
+            var l = 100;
+	        //getSupplier(s,l);
+
+            Tab2('.pull-left','.newsupplier2_main');
+            function Tab2(a,b){
+                var aBtn = $(a);
+                var aDiv = $('#newsupplier2').find(b);
+                aBtn.click(function(){
+                    $('.newsupplier2_main').css('display', 'none');
+                    aBtn.removeClass('active');
+                    aBtn.eq($(this).index()).addClass('active');
+                    aDiv.eq($(this).index()).css('display', 'block');
+                })
+            }
+            /*表单验证*/
+            $("#save").click(function(){
+	                if($("#supplier").val()=="0"){
+	                    alert("请选择名称");
+	                    return false;
+	                }
+	                if($("#purchasedate").val()==""){
+	                    alert("请输入日期");
+	                    return false;
+	                }
+	            	var data = document.getElementById('frame').contentWindow.getData();
+	            	var data1 = eval("("+ data +")");
+                   //alert(data.id);
+                    if(data1.id == -1){
+	            		alert(data1.err); 
+                        return false;
+	                }
+	
+	                var param = {
+	                    'purchase.id':0,
+	                    'purchase.zdy8':$("#supplier").val(),
+	                    'purchase.zdy9':encodeURIComponent(data),
+	                    'purchase.zdy10':$("#purchasedate").val()
+	                };
+	                $.post("purchase/onlineadd.action",param,function(res){
+	                    alert(res.result);
+	                });
+	            return false;
+            });
+
+            $('.supplier_btn').click(function () {
+            	 $('.textseach3').hide();
+               $('.supplier_none').show();
+            })
+
+
+        });
+			
+			/* var params = {
+				'idtype': "id",
+				'typeid': getParameter("typeid")
+			};
+			$.post("supplier/list.action", params, function(res){
+				var supplier = res.suppliers;
+				if(supplier[0].id > 0){
+						$("#name").val(supplier[0].name);
+                    	$("#address").val(supplier[0].address);
+                    	$("#contact").val(supplier[0].contactperson);
+                    	$("#phone").val(supplier[0].phoneno);
+                    	$("#landline").val(supplier[0].tel);
+                    	$("#fax").val(supplier[0].fax);
+                    	$("#license").val(supplier[0].companycode);
+                    	$("#taxrate").val(supplier[0].taxrate);
+                    	$("#bank").val(supplier[0].bank);
+                    	$("#bankname").val(supplier[0].bankname);
+                    	$("#bankaccount").val(supplier[0].bankaccount);
+                    	$("#invoicetype").val(supplier[0].invoicetype);
+                    	$("#taxtype").val(supplier[0].taxtype);
+                    	$("#provinceid").val(supplier[0].provinceid);
+                    	$("#cityid").val(supplier[0].cityid);
+				}
+			}); */
+                
+           /* $('select').searchableSelect();*/
+		  	
+		  	function getSupplier(start, limit){
+				  	var params = {
+				  		'idtype': "audited",
+				  		'typeid': 0,
+                        'start' : start,
+                        'limit' : limit
+				  	};
+				  	$.post("supplier/list.action", params, function(res){
+				  		var suppliers = res.suppliers;
+				  		if(suppliers[0].id > 0){
+				  			var inner = "";
+				  			for(var i=0;i<suppliers.length;i++){
+				  				inner += "<option value="+ suppliers[i].id +">"+ suppliers[i].name +"</option>"
+				  			}
+				  			$("#supplier").html(inner);
+                            $('select').searchableSelect();
+                             
+				  		}
+				  	})
+		  	}
+
+        
+        function getData1(name){ 
+            //alert(name);
+            $("#supplier").val(name);
+            close();
+        }
+
+        function close() {
+            $('.supplier_none').hide();
+            $('.textseach3').hide();
+        }
+    </script>
+</body>
+</html>

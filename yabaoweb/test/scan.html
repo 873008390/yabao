@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>出库扫码</title>
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+  	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=GBK">
+    <link rel="stylesheet" href="css/style.css">
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/zepto.min.js"></script>
+	<script src="js/scan.js"></script>
+
+  </head>
+  
+  <body>
+  <div class="wxapi_container">
+    <div class="lbox_close wxapi_form">
+    	<div style="margin-top:20px;">箱码&nbsp;(每箱总数：<span id="total">3</span>)</div>
+    	<div id="boxcodes" style="line-height:35px;border-bottom:1px solid #dddddd;">-</div>
+   		<div style="margin-top:20px;">瓶码/盒码</div>
+   		<div id="codes" style="height:auto !important;height:100px;line-height:35px;border-bottom:1px solid #dddddd;margin-bottom:20px;overflow:hidden;">-</div>
+   		<button class="btn btn_primary" id="continuescan">继续扫码</button>
+   		<button class="btn btn_primary" id="save">保&nbsp;&nbsp;&nbsp;&nbsp;存</button>
+    </div>
+   </div>
+  </body>
+</html>

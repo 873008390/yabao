@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>亚宝药业集团</title>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="js/jquery.min.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<link href='css/font1.css' rel='stylesheet' type='text/css'>
+<link href='css/font2.css' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<!--/script-->
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+				});
+			});
+</script>
+</head>
+<body><!-- header-section-starts -->
+<div class="about-header-banner">
+  <div class="lunbo">
+    <div class="container lunbo-center">
+      <nav class="navbar navbar-default" role="navigation"> 
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <a class="navbar-brand" href="index.html"><img src="images/logo.png" width="120" height="25"  alt=""/></a> </div>
+        
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav" id="nav">
+          </ul>
+          <ul class="nav navbar-nav navbar-right">            <li class="active"><a class="fon" href="#">简体版</a></li>
+            <li><a class="fon" id="StranLink" href="javascript:StranBody()" name="StranLink">繁体版</a></li>
+            <li><a  class="fon" href="#" >English</a></li>
+            <li><a>
+              <button type="button" class="btn btn-default btn-sm" id="js-com-header-search"><span class="glyphicon glyphicon-search"></span> Search</button>
+              </a></li>
+          </ul>
+          <div class="clear"></div>
+          <div class="sdg">
+            <form action="" method="post">
+              <strong> <input type="text" name="keyword" id="keyword" value=""/>
+              <input type="button" id="search" value="搜索"/>
+              </strong>
+            </form>
+          </div>
+          <script type="text/javascript">
+  $(document).ready(function(e) {
+      $('#js-com-header-search').click(function(){
+          $(this).toggleClass('selected');
+          $('.collapse form').toggle();
+      });
+      })
+</script> 
+        </div>
+        <!-- /.navbar-collapse --> 
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+</div>
+<!-- header-section-ends --><div class="typrography">
+	 <div class="container">
+	      <h3 class="type text-center" id="innercurrentmenu"></h3>
+          
+          
+		 <div class="grid_3 grid_5">
+			<ol class="breadcrumb" id="innermenu">
+			  
+			</ol>
+		 </div>          
+
+		 <div class="grid_3 grid_4">
+		     <div class="bs-example">
+				 <table class="table" id="contentlist">
+				  
+				 </table>
+			 </div>
+	      </div>
+		 		
+		   <div class="grid_3 grid_5">
+			 <div class="col-md-6">
+				  <nav>
+					  <ul class="pagination" id="pagelist">
+						
+					  </ul>
+				 </nav>
+				</div>
+			   <div class="clearfix"> </div>
+		 </div>
+         </div>
+         </div>
+
+
+
+<div class="get-in-touch">
+    <div class="container">
+        <div class="col-lg-4 gin">
+            <a href="zhaopin.html">招贤纳士</a><span> | </span><a href="contact.html">联系我们</a><span> | </span><a
+                href="legal.html">法律声明</a>
+        </div>
+        <div class="col-lg-4 find-us">
+            <span>发现我们</span>
+            <span class="weibo"><img src="images/weibo.png" width="26" height="26" alt=""/></span>
+            <span class="erweima-weibo"><img src="images/erweima1.jpg" width="100" height="100" alt=""/></span>
+            <span>|</span>
+            <span class="weixin"><img src="images/weixin.png" width="26" height="26" alt=""/></span>
+            <span class="erweima-weixin"><img src="images/erweima2.jpg" width="100" height="100" alt=""/></span>
+        </div>
+        <script type="text/javascript">
+            $(".weibo").hover(function () {
+                $('.erweima-weibo').toggle();
+            });
+            $(".weixin").hover(function () {
+                $('.erweima-weixin').toggle();
+            });
+        </script>
+
+        <div class="col-lg-4 link-us" id="link-us">
+
+        </div>
+        <div class="col-md-12 dal">
+            <img src="images/logo-under.png" width="310" height="120" alt=""/>
+        </div>
+    </div>
+    <div class="col-md-12 address">
+        <address>
+            <p id="copyright"></p>
+        </address>
+    </div>
+    <div class="copyright text-center">
+        <p>&nbsp;</p>
+    </div>
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="copyright text-center">
+        </div>
+    </div>
+</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+				/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+				*/
+			$().UItoTop({ easingType: 'easeOutQuart' });
+			gettypesocialresponsibilitynew(0,6);
+			getcontact();
+			$("#search").click(function(){
+				if($("#keyword").val() == ""){
+					alert("请输入关键词");
+				}else{
+					self.location = "search.html?keyword="+ escape($("#keyword").val());
+				}
+			});
+		});
+	</script>
+<a href="#to-top" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/fangti.js"></script>
+<script src="js/alamo_js.js"></script>
+</body>
+</html>

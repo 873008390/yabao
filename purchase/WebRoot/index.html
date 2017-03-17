@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="pragma" content="no-cache">  
+    <meta charset="UTF-8">
+    <title>亚宝药业采购共享平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/cgh_js.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-con"><img src="images/head-banner.jpg" widht="100%"></div>
+        <div class="user-con">
+            <span class="head-icon"><img src="images/info-icon.png"></span>
+            <p class="setuser" id="setuser"></p>
+            <a class="line"> | </a>
+            <a onClick="logout();" style="cursor: pointer;" id="logout">退出</a>
+        </div>
+    </div>
+    <div id="main" class="clearfix">
+        <div class="main_lf pull-left">
+            <ul class="menu" id="nav">
+
+            </ul>
+        </div>
+        <div class="main_rt" style="display:block">
+            <!-- <div class="main_rt_header">
+                <h3 id="miantitle">供应商</h3>
+            </div> -->
+            <div class="main_rt_content">
+                <iframe class="iframe src1" src="home.html?idtype=allwithlimit&typeid=0" name="main"  frameborder="0" scrolling="no" id="test" 
+
+onload="this.height=100">
+ 
+                </iframe>
+            </div>
+        </div>
+ 
+    </div>
+    <footer>
+    </footer>
+</body>
+<script>
+/*    function reinitIframe(){
+    var iframe = document.getElementById("test");
+    try{
+    var bHeight = iframe.contentWindow.document.body.scrollHeight;
+    var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+    var height = Math.max(bHeight, dHeight);
+    iframe.height = height;
+    console.log(height);
+    }catch (ex){}
+    }*/
+/*    window.setInterval("reinitIframe()", 200);*/
+    $(function(){
+        setcopyright2();
+        setUsername();
+        GetMenu();
+        setInterval("islogin()",60000);
+        Active2('.main_rt_menu','.main_rt_menu2');
+        function Active2(a,b){
+            var aBtn = $(a).find(b);
+            aBtn.click(function(){
+                aBtn.removeClass('active');
+                $(this).addClass('active');
+            })
+        }
+        $(document).click(function () {
+           
+            $("#test").contents().find(".searchable-select-dropdown").addClass('searchable-select-hide');
+        })
+    })
+            $.ajaxSetup (
+                {
+                  async: false
+                });
+</script>
+<script src="js/mbusiness.js" ></script>
+</html>

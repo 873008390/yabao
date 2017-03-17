@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="auditgroup" extends="json-default" namespace="/auditgroup">  
+        <action name="list" class="com.mbusiness.action.AuditgroupListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="add" class="com.mbusiness.action.AuditgroupAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="delete" class="com.mbusiness.action.AuditgroupDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="detaillist" class="com.mbusiness.action.AuditgroupdetailListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="detailadd" class="com.mbusiness.action.AuditgroupdetailAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="detaildelete" class="com.mbusiness.action.AuditgroupdetailDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="userlist" class="com.mbusiness.action.AuditgroupuserListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="useradd" class="com.mbusiness.action.AuditgroupuserAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="userdelete" class="com.mbusiness.action.AuditgroupuserDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="loglist" class="com.mbusiness.action.AuditlogListAction" method="list">
+            <result type="json"></result>
+        </action> 
+    </package> 
+</struts>

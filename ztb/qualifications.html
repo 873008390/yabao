@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>资质更新</title>
+	<link rel="stylesheet" href="css/style_gh.css">
+</head>
+<body>
+	</head>
+<body>
+	<div id="news">
+		<!-- 头部 -->
+		<header id="header">
+			<div id="logo">
+					<a href="index.html">
+						<div class="logo1"><img src="image/logo1.png" alt=""></div>
+						<div class="logo2"><img src="image/logo2.png" alt=""></div>						
+					</a>		
+			</div>
+			<nav id="nav">
+				    	        	        	        
+			</nav>	
+		</header>
+		<div class="tender_content">
+				<ul class="breadcrumbs" id="navbar">
+				    
+				</ul>
+				<div class="tender_mian">
+					<div class="tender_mian_lf">
+						<div class="tender-nav news-nav" id="navlist">
+							
+						</div>
+						<div class="tender_contact">
+							<p class="tender_contact_t">联系我们<span>&nbsp;/&nbsp;Contact Us</span></p>
+							<div class="tender_contact_cot" id="contact">
+								
+							</div>
+						</div>
+						<div class="tender_search">
+							<p class="tender_contact_t">站内搜索<span>&nbsp;/&nbsp;Search</span></p>
+							<div class="tender_search_cot">
+								<input type="text" id="keyword">
+								<button id="search"><a >搜索</a></button>								
+							</div>
+						</div>
+						<img src="image/map.png" alt="" class="news_map">
+					</div>
+					<div class="tender_mian_rt complaint" id="tender_tab">
+						<div class="tender_mian_rt_ht">
+							<a href="javascript:;" class="active">我的资质</a>
+							<a href="javascript:;">资质更新</a>							
+						</div>
+						<form action="supplier/addfile.action" id="formfield" name="formfield" method="POST"  enctype ="multipart/form-data">
+								<ul class="qualifications_cot" style="display: block;">
+									<li  class="file-box">
+										<span>*</span> 资质材料<input type='text' name='path' id='path' class='txt' /> 
+										<input type='button' class='btn' value='选择' /> 
+										<input type="file" name="upload" class="file" id="upload" size="28" onchange="document.getElementById('path').value=this.value" /> 
+										<p>请选择上传投标所需材料，多个材料请统一打包上传，支持.rar/.zip</p>
+									</li>																		
+									<button id="uploadbtn">上传</button>																								
+								</ul>
+								<ul class="qualifications_cot2" id="filelist">
+										
+								</ul>													
+						</form>						
+					</div>
+				</div>					
+		</div>	
+	</div>
+	<footer class="clearfloat">
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.validate.js"></script>		
+	<script src="js/cgh_js.js"></script>		
+	<script src="js/alamo_js.js"></script>	
+	<script type="text/javascript">
+		islogin();
+		settypemenu(getParameter("menuid"));
+		getcontact();
+		islogin();
+		$("#uploadbtn").click(function(){
+			//alert("ok");
+			if($("#upload").val() == '' || $("#upload").val() == null){
+				alert("请选择文件");
+				return false;
+			}
+		});
+		getsupplierfile();
+		function deletefile(id){
+			if(confirm("确定删除?")){
+				var param = {
+						'supplierfileid': id
+				};
+				$.post("supplier/deletefile.action",param,function(res){
+					if(res.success){
+						self.location.reload();
+					}else{
+						alert(res.result);
+					}
+				});
+			}
+			
+		}
+		$("#search").click(function(){
+			self.location = "search.html?keyword="+ escape($("#keyword").val());
+		});
+	</script>	
+	<script>
+		window.onload = function(){
+		   var oParent = document.getElementById('tender_tab');
+		   var aBtn = oParent.getElementsByTagName('a');
+		   var aDiv = oParent.getElementsByTagName('ul');
+
+		   for(var i=0;i<aBtn.length;i++){         //遍历div1中的按钮
+		      aBtn[i].index=i;          //给aBth[]添加自定义属性
+		      aBtn[i].onclick=function (){
+		          for(var i=0;i<aBtn.length;i++){ //遍历按钮，将class清除
+			           aBtn[i].className='';
+			           aDiv[i].style.display='none';
+			      }
+			      this.className='active';
+			      aDiv[this.index].style.display='block';
+		   	  }
+		   }
+		}
+	</script>			
+</body>
+</html>

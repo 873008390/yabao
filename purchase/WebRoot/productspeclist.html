@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <title>亚宝药业采购共享平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/cgh_js.js"></script>
+    <script src="js/getParameter.js"></script>
+	<script type="text/javascript" src="js/Calendar4.js"></script>
+</head>
+<body id="newsupplier2">
+	<div class="newsupplier2_top_h1">
+	                物料规格&nbsp;&nbsp;<!-- |<span id="hide" style="cursor:pointer;">显示高级查询</span>| -->
+	</div>
+	<div id="searchdiv" class="searchdiv">
+	    <div class="newsupplier2_top_1">
+	                <span rowspan="2">
+	                    <input type="submit" value="查询" id="search" class="register_btn" />
+	                 </span>
+	    </div>
+	
+	    <div class="newsupplier2_top_2 clearfix">
+	        <div class="newsupplier2_top_2_1">
+	            <span><label></label>名称：</span>
+	            <input type="text" id="supplier" name="supplier" class="required"/>
+	        </div>
+	    </div>
+    </div>
+    <div class="newsupplier2_main clearfix supplier" style="display: block;">
+        <iframe id="frame" src="productspeclist-main.html?idtype=allwithlimit&typeid=0" class="iframepurchase"></iframe>
+    </div>
+    <script>
+	        $(function(){
+
+	        	$("#hide").click(function(){
+	        		showsearch();
+	        	});
+
+	        	$("#search").click(function(){
+	        		var typeid = "";
+	        		if($("#supplier").val() != ""){
+	        			if(typeid == ""){
+	        				typeid = "supplier="+ $("#supplier").val();
+	        			}else{
+	        				typeid += "_supplier="+ $("#supplier").val();
+	        			}
+	        		}
+	        		if($("#purchasedate").val() != ""){
+	        			if(typeid == ""){
+	        				typeid = "purchasedate="+ $("#purchasedate").val();
+	        			}else{
+	        				typeid += "_purchasedate="+ $("#purchasedate").val();
+	        			}
+	        		}	        		
+
+	        		if($("#purchaseno").val() != ""){
+	        			if(typeid == ""){
+	        				typeid = "purchaseno="+ $("#purchaseno").val();
+	        			}else{
+	        				typeid += "_purchaseno="+ $("#purchaseno").val();
+	        			}
+	        		}	        		//alert(typeid);
+	        		if(typeid == ""){
+	        			var newurl = "productspeclist-main.html?idtype=searchwithlimit&typeid=0";
+						document.getElementById('frame').src = newurl;
+	        		}else{
+	        			var newurl = "productspeclist-main.html?idtype=searchwithlimit&typeid="+ typeid;
+						document.getElementById('frame').src = newurl;
+	        		}
+	        	});
+		    });
+
+		  	
+		  	function showsearch(){
+		  			if($("#hide").html() == "显示高级查询"){
+		        		$("#searchdiv").show();
+		        		$("#hide").html("隐藏高级查询");
+	        		}else{
+		        		$("#searchdiv").hide();
+		        		$("#hide").html("显示高级查询");
+	        		}
+		  	}
+    </script>
+</body>
+</html>

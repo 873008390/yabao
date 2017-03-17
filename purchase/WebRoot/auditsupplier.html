@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache">  
+    <title>亚宝药业采购共享平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/cgh_js.js"></script>
+    <script src="js/getParameter.js"></script>
+    <script src="js/ajaxfileupload.js"></script>
+</head>
+<body id="newsupplier2">
+    <div  class="newsupplier2_top_h1">
+        审核供应商
+    </div>
+    <div class="newsupplier2_top_1">
+                <span rowspan="2">
+                    <input type="hidden" id="type" value="registercomplete" />
+                    <input type="submit" value="返回" id="back" class="register_btn" />
+                    <input type="submit" value="审核" id="audit" class="register_btn" />
+                    <input type="submit" value="查看附件" id="viewfile" class="register_btn" />
+                 </span>
+    </div>
+    <div class="newsupplier2_top_2 clearfix">
+        <div class="newsupplier2_top_2_1">
+            <span>审核结果：</span>
+            <select id="operation" name="user.zdy8">
+                <option value ="同意">同意</option>
+                <option value ="不同意">不同意</option>
+            </select>
+        </div>     
+    </div>
+         <div class="newsupplier2_top_2_2">
+            <span>审核意见：</span>
+            <textarea id="memo" style="vertical-align: top;"  name="name" rows="5" cols="30"/></textarea>
+        </div>      
+    <div class="newsupplier_top2">
+        <ul class="clearfix">
+            <li class="pull-left active"><a href="javascript:void(0)">基本信息</a></li>
+            <li  class="pull-left"><a href="javascript:void(0)">财务信息</a></li>
+        </ul>
+    </div>
+    <div class="newsupplier2_main clearfix" style="display: block;">
+        <div class="newsupplier2_top_2_1">
+            <span><label></label> 名 称：</span>
+            <input type="text" id="name" name="name" class="required" disabled="ture" />
+        </div>    
+        <div>
+            <span><label></label> 联系人：</span>
+            <input type="text" id="contact"  name="contact" class="required" disabled="ture"/>
+        </div>
+        <div>
+            <span><label></label> 手机号：</span> 
+            <input type="text" id="phone"  name="phone"  class="required" disabled="ture"/>
+        </div>
+        <div>
+            <span><label></label> 座机号：</span>
+            <input type="text" id="landline" name="landline"  class="required" disabled="ture"/>
+        </div>
+        <div>
+            <span><label></label> 传真号：</span>
+            <input type="text" id="fax" name="fax" class="required" disabled="ture"/>
+        </div>
+        <div>
+            <span><label></label> 营业执照号：</span>
+            <input type="text" id="license" name="license" class="required" disabled="ture"/>
+        </div>
+        <div>
+            <span><label></label> 默认税率：</span>
+            <input type="text" id="taxrate" name="taxrate" class="required" disabled="ture"/>%
+        </div>
+        <div>
+            <span><label></label> 参标类型：</span>
+            <select id="iscompany" name="user.zdy7" disabled="ture">
+                <option value ="1">公司</option>
+                <option value ="0">个人</option>
+            </select>
+        </div>
+        <div class="dizhi">
+            <span><label></label> 详细地址：</span>
+            <select id="provinceid" name="provinceid" disabled="ture">
+
+            </select>
+            <input type="text" id="address" name="address" class="required" disabled="ture"/>
+        </div>        
+    </div>
+    <div class="newsupplier2_main clearfix">
+        <div>
+            <span><label></label>开户银行：</span>
+            <input type="text" id="bank" name="name" class="required" disabled="ture"/>
+        </div>
+        <div>
+            <span><label></label> 开户名称：</span>
+            <input type="text" id="bankname" name="number" class="required" disabled="ture"/>
+        </div>
+        <div>
+            <span><label></label> 银行账号：</span>
+            <input type="text" id="bankaccount" name="address" class="required" disabled="ture"/>
+        </div>
+        <div>
+            <span><label></label> 发票类型：</span>
+            <select id="invoicetype" name="user.zdy7" disabled="ture">
+                <option value ="增值税专用发票">增值税专用发票</option>
+                <option value ="增值税普通发票">增值税普通发票</option>
+            </select>
+        </div>
+        <div>
+            <span><label></label> 纳税类型：</span>
+            <select id="taxtype" name="user.zdy8" disabled="ture">
+                <option value ="小规模纳税人">小规模纳税人</option>
+                <option value ="一般纳税人">一般纳税人</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        var ready = 0;
+        var cityid = 0;
+        $(function(){
+        	$("#back").click(function(){
+        		history.back();
+        	});
+        	$("#deletefile").click(function(){
+        		self.location = "supplierfilelist.html?idtype=supplier&typeid="+ getParameter("id");
+        	});
+        	$("#viewfile").click(function(){
+        		self.location = "supplierfilelist.html?idtype=supplier&typeid="+ getParameter("typeid");
+        	});
+	        getProvince();
+	        $("#provinceid").change(function(){
+	        		//alert("1");
+	        		getCity();
+	        });
+            Tab2('.pull-left','.newsupplier2_main');
+            function Tab2(a,b){
+                var aBtn = $(a);
+                var aDiv = $('#newsupplier2').find(b);
+                aBtn.click(function(){
+                    $('.newsupplier2_main').css('display', 'none');
+                    aBtn.removeClass('active');
+                    aBtn.eq($(this).index()).addClass('active');
+                    aDiv.eq($(this).index()).css('display', 'block');
+                })
+            }
+            /*表单验证*/
+            $("#audit").click(function(){
+                if( $("#operation").val()=="不同意"){
+                        if($('#memo').val()==""||$('#memo').val()==null){
+                                alert("温馨提示:请输入审核意见");
+                                return false;                               
+                        }else{
+                                     var param = {
+                                        'supplier.id':getParameter("typeid"),
+                                        'supplier.zdy2':$("#memo").val(),
+                                        'supplier.zdy3':$("#operation").val()
+                                    };
+                                    $.post("supplier/audit.action",param,function(res){                                     
+                                        alert(res.result);
+                                        
+                                    });
+                                    return false;                     
+                        }
+                }else{
+                                     var param = {
+                                        'supplier.id':getParameter("typeid"),
+                                        'supplier.zdy2':$("#memo").val(),
+                                        'supplier.zdy3':$("#operation").val()
+                                    };
+                                    $.post("supplier/audit.action",param,function(res){                                     
+                                        alert(res.result);
+                                        
+                                    });
+                                    return false;                     
+                }
+
+            });
+
+        });
+		
+		function getData(){	
+			var params = {
+				'idtype': "id",
+				'typeid': getParameter("typeid")
+			};
+			$.post("supplier/list.action", params, function(res){
+				var supplier = res.suppliers;
+				if(supplier[0].id > 0){
+						$("#name").val(supplier[0].name);
+                    	$("#address").val(supplier[0].address);
+                    	$("#contact").val(supplier[0].contactperson);
+                    	$("#phone").val(supplier[0].phoneno);
+                    	$("#landline").val(supplier[0].tel);
+                    	$("#fax").val(supplier[0].fax);
+                    	$("#license").val(supplier[0].companycode);
+                    	$("#taxrate").val(supplier[0].taxrate);
+                    	$("#bank").val(supplier[0].bank);
+                    	$("#bankname").val(supplier[0].bankname);
+                    	$("#bankaccount").val(supplier[0].bankaccount);
+                    	$("#invoicetype").val(supplier[0].invoicetype);
+                    	$("#taxtype").val(supplier[0].taxtype);
+                    	$("#provinceid").val(supplier[0].provinceid);
+                    	$("#iscompany").val(supplier[0].iscompany);
+                    	cityid = supplier[0].cityid;
+                    	getCity();
+				}
+			});
+		}
+		
+        
+	
+		  	function getProvince(){
+			  	var params = {
+			  		'idtype': "all",
+			  		'typeid': "0"
+			  	};
+			  	$.post("province/list.action", params, function(res){
+			  		var provinces = res.provinces;
+			  		if(provinces[0].id > 0){
+			  			var inner = "";
+			  			for(var i=0;i<provinces.length;i++){
+			  				inner += "<option value="+ provinces[i].id +">"+ provinces[i].name +"</option>"
+			  			}
+			  			$("#provinceid").html(inner);
+				  		if(ready == 0){
+				  			getData();
+				  			ready = 1;
+				  		}
+			  			//getCity();
+			  		}
+			  	});
+		  	}
+		  	
+		  	function getCity(){
+				  	var params = {
+				  		'idtype': "province",
+				  		'typeid': $("#provinceid").val()
+				  	};
+				  	$.post("city/list.action", params, function(res){
+				  		var citys = res.citys;
+				  		if(citys[0].id > 0){
+				  			var inner = "";
+				  			for(var i=0;i<citys.length;i++){
+				  				inner += "<option value="+ citys[i].id +">"+ citys[i].name +"</option>"
+				  			}
+				  			$("#cityid").html(inner);
+				  			if(cityid > 0){
+				  				$("#cityid").val(cityid);
+				  				cityid = 0;
+				  			}
+				  		}
+				  	});
+		  	} 
+    </script>
+</body>
+</html>

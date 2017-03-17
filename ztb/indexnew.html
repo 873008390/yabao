@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" href="css/style_gh.css">
+</head>
+<body>
+	<!-- 头部 -->
+		<header id="header">
+			<div id="logo">
+					<a href="index.html">
+						<div class="logo1"><img src="image/logo1.png" alt=""></div>
+						<div class="logo2"><img src="image/logo2.png" alt=""></div>						
+					</a>		
+			</div>
+			<nav id="nav"> 
+						        		        
+			</nav>	
+		</header>
+	<div id="mian" class="clearfloat">	
+		<div class="mian_left">
+			<!-- 登录框 -->
+			<div class="loginbar" id="loginform">
+				<form>
+					用户名：<input type="text" id="name" />
+					<div class="password">
+						密码：<input type="password" id="pwd" size="10"/>
+					</div>
+					<a href="password.html" class="forgetpassword">忘记密码</a>
+					<div class="btn">
+						<input type="button" value="登录" id="loginsubmit"/>
+						<input type="button" value="注册" id="registerurl"/>
+					</div>
+				</form>
+			</div>	
+			<div class="contact">
+				<img src="image/contact.png" alt="">
+				<a href="http://www.yabao.com.cn"></a>
+			</div>
+			<div class="news">
+				<div class="news_cot">
+				<div class="news_ht">
+					<h2>新闻中心</h2>
+					<a href="news.html">更多</a>	
+				</div>
+					<ul class="list" id="newslist">
+						数据提取中...
+					</ul>				
+				</div>
+			</div>				
+		</div>
+		<div class="mian_center">
+				<!--投标信息 -->
+				<div class="column">
+					<div class="column_cot">
+					<div class="column_ht">
+						<h2>投标信息</h2>
+						<a href="tender.html">更多</a>	
+					</div>
+						<ul class="list" id="projectlist">
+							数据提取中...
+						</ul>			
+					</div>
+				</div>
+				<!--中标信息 -->
+				<div class="column bid">
+					<div class="column_cot">
+					<div class="column_ht">
+						<h2>中标信息</h2>
+						<a href="bid.html">更多</a>	
+					</div>
+						<ul class="list" id="projectopenlist">
+							数据提取中...
+						</ul>			
+					</div>
+				</div>					
+			</div>
+			<div class="mian_right ">
+				<div class ="aside">
+					<img src="image/aside.jpg" alt="">
+					<h3>企业简介</h3>
+					<p>亚宝集团集药品研发、生产、物流... <a href="#">更多</a></p>
+				</div>
+				<form action="">
+					<div class="search">
+						<h3>站内搜索</h3>
+						<input type="text" id="keyword">
+						<a><img src="image/search.png" alt="" id="search"></a>
+					</div>
+					<div class="group">
+						<h3>集团链接</h3>
+						<select onchange="window.open(this.value)">  
+						  <option value ="1">--请选择--</option>  
+						  <option value ="http://www.yabaobjp.com/">亚宝保健品</option>
+						</select>  
+					</div>
+				</form>	
+				<img src="image/map.png" alt="" class="map">	
+			</div>		
+		</div>		
+	</div>
+	<footer>
+		
+	</footer>
+
+	<script src="js/jquery.js"></script>	
+	<script src="js/jquery.validate.js"></script>		
+	<script src="js/cgh_js.js"></script>			
+	<script src="js/alamo_js.js"></script>			
+	<script src="js/md5.js"></script>	
+	<script type="text/javascript">
+		islogin();
+		getproject(0,8);
+		getprojectopen(0,8);
+		getnews(0,6);
+		$("#search").click(function(){
+			self.location = "search.html?keyword="+ escape($("#keyword").val());
+		});
+	</script>
+
+</body>
+</html>

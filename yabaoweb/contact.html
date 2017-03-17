@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>亚宝药业集团</title>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<script src="js/jquery.min.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<!--/script-->
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+				});
+			});
+</script>
+<!--引用百度地图API-->
+<style type="text/css">
+    .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+    .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+
+</head>
+<body>
+<div class="head-logo">
+    <div class="head-logo-con">
+        <div class="logo-brand">
+            <a href="index.html"><img src="images/logo2.png" width="260" height="37"/></a>
+        </div>
+        <div class="head-logo-jian"><a>简</a></div>
+        <div class="head-logo-fan"><a  id="StranLink" href="javascript:StranBody()" name="StranLink">繁</a></div>
+        <div class="head-logo-en"><a>En</a></div>
+    </div>
+</div>
+<div class="nav-all ma">
+    <div class="container">
+        <nav class="navbar navbar-default" role="navigation">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" id="nav">
+                </ul>
+                <script type="text/javascript">
+                    $(document).ready(function (e) {
+                        $('#js-com-header-search').click(function () {
+                            $(this).toggleClass('selected');
+                            $('.collapse form').toggle();
+                        });
+                    });
+                    $(".down1").hover(function () {
+                        $('.menu1').toggle();
+                    });
+                    $(".down2").hover(function () {
+                        $('.menu2').toggle();
+                    });
+                    $(".down3").hover(function () {
+                        $('.menu3').toggle();
+                    });
+                    $(".down4").hover(function () {
+                        $('.menu4').toggle();
+                    });
+                    $(".down5").hover(function () {
+                        $('.menu5').toggle();
+                    });
+                    $(".down6").hover(function () {
+                        $('.menu6').toggle();
+                    });
+
+                    $(".more").click(function () {
+                        $(".navbar-right").toggle();
+                    });
+                </script>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="banner-tu">
+    <div class="container">
+       <span><img src="images/banner2.jpg" width="100%"/></span>
+    </div>
+</div>
+
+<!-- header-section-ends --><!---start-content---->
+		    <div class="contact_desc">
+		        <div class="container">
+				 <h2>联系我们</h2>
+				 <div class="content_bottom">
+				 	<div class="company_address">
+				     	<h3>亚宝药业集团股份有限公司</h3>
+                        <p>公司注册地：山西省芮城县富民路43号</p>
+                        <p>公司注册地邮政编码：044600</p>
+                        <p>公司办公地点：山西省风陵渡经济开发区工业大道1号</p>
+                        <p>公司办公地邮政编码：044602</p>
+				   		<p>电话号码：0359-3388114</p>
+				   		<p>公司传真：0359-3388002</p>
+                        <p>北京办公室地址：北京经济技术开发区天华北街11号院2号楼11层</p>
+				 	 	<p>Email: <span><a href="yabao@yabao.com.cn">yabao@yabao.com.cn</a></span></p>
+				   		<p>公司网址：http://www.yabao.com.cn</p>
+				     </div>
+				       <div class="contact_info">
+    	 				<h3>地图位置</h3>
+                        <!--百度地图容器-->
+                      <!--  <div style="width:763px;height:380px;border:#ccc solid 1px;" id="dituContent"></div>-->
+                           <div style="width: 100%"><img src="images/ditu.png" width="100%"></div>
+      				   </div>
+				      <div class="clearfix"></div>
+                      <div class="other-cop">
+                        <ul>
+                          <li><h3>一分公司</h3></li>
+                          <li>地址：山西省运城市芮城县富民路43号</li>
+                          <li>邮编：044600</li>
+                          <li>传真：0359-3088149</li>
+                        </ul>
+                        <ul>
+                          <li><h3>二分公司</h3></li>
+                          <li>地址：山西省运城市芮城县永乐南路 </li>
+                          <li>邮编：044600 </li>
+                          <li>传真：0359-3088562</li>
+                        </ul>
+                        <ul>
+                          <li><h3>三分公司</h3></li>
+                          <li>地址：山西省运城市风陵渡经济开发区工业大道1号</li>
+                          <li>邮编：044602 </li>
+                          <li>传真：0359-3388603</li>
+                        </ul>
+                        <ul>
+                          <li><h3>风陵渡工业园</h3></li>
+                          <li>地址：芮城县风陵渡经济开发区工业大道１号</li>
+                          <li>邮编：044602 </li>
+                          <li>传真：0359-3388101</li>
+                        </ul>
+                        <ul>
+                          <li><h3>山西亚宝医药经销有限公司</h3></li>
+                          <li>地址：山西省运城市风陵渡经济开发区工业大道1号</li>
+                          <li>邮编：044602 </li>
+                          <li>传真：0359-3388043</li>
+                        </ul>
+                        <ul>
+                          <li><h3>太原亚宝医药经销有限公司</h3></li>
+                          <li>地址：太原市经济开发区大运路20号</li>
+                          <li>邮编：030032</li>
+                          <li>传真：0351-7814506</li>
+                        </ul>
+                      </div>
+	                </div>	
+	             </div>  
+	          </div>
+<div class="get-in-touch">    <div class="container">
+        <div class="col-lg-4 gin">
+            <a href="zhaopin.html">招贤纳士</a><span> | </span><a href="contact.html">联系我们</a><span> | </span><a
+                href="legal.html">法律声明</a>
+        </div>
+        <div class="col-lg-4 find-us">
+            <span>发现我们</span>
+            <span class="weibo"><img src="images/weibo.png" width="26" height="26" alt=""/></span>
+            <span class="erweima-weibo"><img src="images/erweima1.jpg" width="100" height="100" alt=""/></span>
+            <span>|</span>
+            <span class="weixin"><img src="images/weixin.png" width="26" height="26" alt=""/></span>
+            <span class="erweima-weixin"><img src="images/erweima2.jpg" width="100" height="100" alt=""/></span>
+        </div>
+        <script type="text/javascript">
+            $(".weibo").hover(function () {
+                $('.erweima-weibo').toggle();
+            });
+            $(".weixin").hover(function () {
+                $('.erweima-weixin').toggle();
+            });
+        </script>
+
+        <div class="col-lg-4 link-us" id="link-us">
+
+        </div>
+        <div class="col-md-12 dal">
+            <img src="images/logo-under.png" width="310" height="120" alt=""/>
+        </div>
+    </div>
+    <div class="col-md-12 address">
+        <address>
+            <p id="copyright"></p>
+        </address>
+    </div>
+    <div class="copyright text-center">
+        <p>&nbsp;</p>
+    </div>
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="copyright text-center">
+        </div>
+    </div>
+</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+				/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+				*/
+				$().UItoTop({ easingType: 'easeOutQuart' });
+				getcontact();
+				$("#search").click(function(){
+					if($("#keyword").val() == ""){
+						alert("请输入关键词");
+					}else{
+						self.location = "search.html?keyword="+ escape($("#keyword").val());
+					}
+				});
+		});
+	</script>
+<a href="#to-top" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/fangti.js"></script>
+<script src="js/alamo_js.js"></script>
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(110.323979,34.649676);//定义一个中心点坐标
+        map.centerAndZoom(point,15);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+                //向地图中添加缩略图控件
+	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:0});
+	map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_TOP_RIGHT});
+	map.addControl(ctrl_sca);
+    }
+    
+    //标注点数组
+    var markerArr = [{title:"风陵渡经济开发区工业大道1号",content:"公司办公地点",point:"110.321213|34.646914",isOpen:1,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ];
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+			var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+			var iw = createInfoWindow(i);
+			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+			marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                        borderColor:"#808080",
+                        color:"#333",
+                        cursor:"pointer"
+            });
+			
+			(function(){
+				var index = i;
+				var _iw = createInfoWindow(i);
+				var _marker = marker;
+				_marker.addEventListener("click",function(){
+				    this.openInfoWindow(_iw);
+			    });
+			    _iw.addEventListener("open",function(){
+				    _marker.getLabel().hide();
+			    })
+			    _iw.addEventListener("close",function(){
+				    _marker.getLabel().show();
+			    })
+				label.addEventListener("click",function(){
+				    _marker.openInfoWindow(_iw);
+			    })
+				if(!!json.isOpen){
+					label.hide();
+					_marker.openInfoWindow(_iw);
+				}
+			})()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+    
+    initMap();//创建和初始化地图
+</script>
+</body>
+</html>

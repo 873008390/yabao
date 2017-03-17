@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vote.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=GB18030">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+    <script type="text/javascript" src="../js/jquery-1.11.0.js"></script>
+
+  </head>
+  
+  <body>
+    <script type="text/javascript">
+    	$(function() {
+    		alert("begin");
+    		$.ajax({
+             type: "get",
+             async: false,
+             url: "http://pwx.a.mvote.net/op.php?action=dovote&guid=077e81ef-203d-e97d-a388-d9a6f012c2e6&ops=1463810&wxparam=",
+             dataType: "jsonp",
+             jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+             jsonpCallback:"flightHandler",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+             success: function(json){
+                 alert(json);
+             },
+             error: function(json){
+                 alert(json.retinfo);
+             }
+         });
+    	});
+    	
+    </script>
+  </body>
+</html>

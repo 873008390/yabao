@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding//WebRoot/config/createorg.txt=UTF-8
+encoding//WebRoot/css/style.css=UTF-8
+encoding//WebRoot/ext/app/controller/Suppliers2.js=UTF-8
+encoding//WebRoot/index.html=UTF-8
+encoding//WebRoot/js/cgh_js.js=UTF-8
+encoding//WebRoot/js/mbusiness.js=UTF-8
+encoding//src/com/mbusiness/helper/InvokeHelper.java=UTF-8
+encoding//src/com/mbusiness/kingdee/util=UTF-8
+encoding//src/com/mbusiness/kingdee/util/DepartmentListener.java=UTF-8
+encoding//src/com/mbusiness/kingdee/util/PurchaseOrderListener.java=UTF-8
+encoding//src/com/mbusiness/model/KMaterial.java=UTF-8
+encoding//src/com/mbusiness/model/KPurchaseOrder.java=UTF-8
+encoding//src/com/mbusiness/model/KSupplier.java=UTF-8
+encoding/<project>=GBK

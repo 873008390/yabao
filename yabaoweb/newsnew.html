@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>亚宝药业集团</title>
+    <script src="js/jquery.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 900);
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="head-logo">
+    <div class="head-logo-con">
+        <div class="logo-brand">
+            <a href="index.html"><img src="images/logo2.png" width="260" height="37"/></a>
+        </div>
+        <div class="head-logo-jian"><a>简</a></div>
+        <div class="head-logo-fan"><a  id="StranLink" href="javascript:StranBody()" name="StranLink">繁</a></div>
+        <div class="head-logo-en"><a>En</a></div>
+    </div>
+</div>
+<div class="nav-all ma">
+    <div class="container">
+        <nav class="navbar navbar-default" role="navigation">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" id="nav">
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="banner-tu">
+    <div class="container">
+       <span><img src="images/banner2.jpg" width="100%"/></span>
+    </div>
+</div>
+
+<!-- header-section-ends --><div class="typrography">
+	 <div class="container">
+	      <h3 class="type text-center" id="innercurrentmenu"></h3>
+          
+          
+		 <div class="grid_3 grid_5">
+			<ol class="breadcrumb" id="innermenu">
+			  
+			</ol>
+		 </div>          
+
+		 <div class="grid_3 grid_4">
+		     <div class="bs-example">
+				 <table class="table" id="contentlist">
+				  
+				 </table>
+			 </div>
+	      </div>
+		 		
+		   <div class="grid_3 grid_5">
+			 <div class="col-md-6">
+				  <nav>
+					  <ul class="pagination" id="pagelist">
+						
+					  </ul>
+				 </nav>
+				</div>
+			   <div class="clearfix"> </div>
+		 </div>
+         </div>
+         </div>
+
+
+
+<div class="get-in-touch">
+    <div class="container">
+        <div class="col-lg-4 gin">
+            <a href="zhaopin.html">招贤纳士</a><span> | </span><a href="contact.html">联系我们</a><span> | </span><a
+                href="legal.html">法律声明</a>
+        </div>
+        <div class="col-lg-4 find-us">
+            <span>发现我们</span>
+            <span class="weibo"><img src="images/weibo.png" width="26" height="26" alt=""/></span>
+            <span class="erweima-weibo"><img src="images/erweima1.jpg" width="100" height="100" alt=""/></span>
+            <span>|</span>
+            <span class="weixin"><img src="images/weixin.png" width="26" height="26" alt=""/></span>
+            <span class="erweima-weixin"><img src="images/erweima2.jpg" width="100" height="100" alt=""/></span>
+        </div>
+        <script type="text/javascript">
+            $(".weibo").hover(function () {
+                $('.erweima-weibo').toggle();
+            });
+            $(".weixin").hover(function () {
+                $('.erweima-weixin').toggle();
+            });
+        </script>
+
+        <div class="col-lg-4 link-us" id="link-us">
+
+        </div>
+        <div class="col-md-12 dal">
+            <img src="images/logo-under.png" width="310" height="120" alt=""/>
+        </div>
+    </div>
+    <div class="col-md-12 address">
+        <address>
+            <p id="copyright"></p>
+        </address>
+    </div>
+    <div class="copyright text-center">
+        <p>&nbsp;</p>
+    </div>
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="copyright text-center">
+        </div>
+    </div>
+</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+				/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+				*/
+			$().UItoTop({ easingType: 'easeOutQuart' });
+			gettypenewsnew(0,10);
+			getcontact();
+		});
+	</script>
+<a href="#to-top" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/fangti.js"></script>
+<script src="js/alamo_js.js"></script>
+</body>
+</html>

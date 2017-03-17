@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <title>亚宝药业采购共享平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/cgh_js.js"></script>
+    <script src="js/getParameter.js"></script>
+	<script type="text/javascript" src="js/Calendar4.js"></script>
+</head>
+<body id="newsupplier2">
+    <div class="supplier_none">
+      	<p>请选择供应商</p>     
+        <iframe id="iframe" src="supplierlist-main2.html?idtype=searchwithlimit&typeid=auditstatus=1">
+            
+        </iframe>
+    </div>
+	<div class="newsupplier2_top_h1">
+	                采购单列表&nbsp;&nbsp;|<span id="hide" style="cursor:pointer;">显示高级查询</span>|
+	</div>
+	<div id="searchdiv" class="searchdiv">
+	    <div class="newsupplier2_top_1">
+	                <span rowspan="2">
+	                    <input type="submit" value="查询" id="search" class="register_btn" />
+	                 </span>
+	    </div>
+	
+	    <div class="newsupplier2_top_2 clearfix">
+        <div class="newsupplier2_top_2_1">
+            <span><label>*</label>供应商：</span>
+            <input type="text" id="supplier" name="supplier"  onKeyUp="textSeach3()" onFocus="textShuru2()"><button class="supplier_btn">选择</button>           
+        </div>
+	        <iframe id="iframe4" name="iframe4" class="textseach3" src="supplierlist-main2.html?idtype=search&typeid=999999">
+	            
+	        </iframe>           
+	        <div class="newsupplier2_top_2_1">
+	            <span><label></label>采购单号:</span>
+	            <input type="text" id="purchaseno" name="purchaseno" class="required"/>
+	        </div>
+	        <div class="newsupplier2_top_2_1">
+	            <span><label></label>开始日期：</span>
+	            <input type="text" id="purchasedate1" name="purchasedate1" class="required" onclick="new Calendar().show(this);"/>
+	        </div>
+	        <div class="newsupplier2_top_2_1">
+	            <span><label></label>结束日期：</span>
+	            <input type="text" id="purchasedate2" name="purchasedate2" class="required" onclick="new Calendar().show(this);"/>
+	        </div>	        	        
+	    </div>
+    </div>
+    <div class="newsupplier2_main clearfix supplier" style="display: block;">
+        <iframe id="frame" src="purchaselist-main.html?idtype=allwithlimit&typeid=0" class="iframepurchase"></iframe>
+    </div>
+    <script>
+	        $(function(){
+
+	        	$("#hide").click(function(){
+	        		showsearch();
+	        	});
+ 
+	        	$("#search").click(function(){
+	        		var typeid = "";
+	        		if($("#supplier").val() != ""){
+	        			if(typeid == ""){
+	        				typeid = "supplier="+ encodeURIComponent(encodeURIComponent($("#supplier").val()));
+	        			}else{
+	        				typeid += "_supplier="+ encodeURIComponent(encodeURIComponent($("#supplier").val()));
+	        			}
+	        		}
+	        		if($("#purchasedate1").val() != ""){
+	        			if(typeid == ""){
+	        				typeid = "purchasedate1="+ $("#purchasedate1").val();
+	        			}else{
+	        				typeid += "_purchasedate1="+ $("#purchasedate1").val();
+	        			}
+	        		}	        		
+	        		if($("#purchasedate2").val() != ""){
+	        			if(typeid == ""){
+	        				typeid = "purchasedate2="+ $("#purchasedate2").val();
+	        			}else{
+	        				typeid += "_purchasedate2="+ $("#purchasedate2").val();
+	        			}
+	        		}	
+	        		if($("#purchaseno").val() != ""){
+	        			if(typeid == ""){
+	        				typeid = "purchaseno="+ $("#purchaseno").val();
+	        			}else{
+	        				typeid += "_purchaseno="+ $("#purchaseno").val();
+	        			}
+	        		}	        		//alert(typeid);
+	        		if(typeid == ""){
+	        			var newurl = "purchaselist-main.html?idtype=searchwithlimit&typeid=0";
+						document.getElementById('frame').src = newurl;
+	        		}else{
+	        			var newurl = "purchaselist-main.html?idtype=searchwithlimit&typeid="+ typeid;
+						document.getElementById('frame').src = newurl;
+	        		}
+	        	});
+		    });
+
+            $('.supplier_btn').click(function () {
+               $('.supplier_none').show();
+            })
+		  	
+		  	function showsearch(){
+		  			if($("#hide").html() == "显示高级查询"){
+		        		$("#searchdiv").show();
+		        		$("#hide").html("隐藏高级查询");
+	        		}else{
+		        		$("#searchdiv").hide();
+		        		$("#hide").html("显示高级查询");
+	        		}
+		  	}
+		  	
+		  	        
+        function getData1(name){ 
+            //alert(name);
+            $("#supplier").val(name);
+            close();
+        }
+
+        function close() {
+            $('.supplier_none').hide();
+              $('.textseach3').hide();
+        }
+    </script>
+</body>
+</html>

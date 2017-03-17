@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<link href="css/layout.min.css" rel="stylesheet" type="text/css">
+	<link href="css/jquery ui-1.9.2.css" rel="stylesheet" type="text/css"/>
+	<link href="css/primeui/primeui-2.2.RC1-min.css" rel="stylesheet" type="text/css"/>
+	<link href="css/primeui/theme.css" rel="stylesheet" type="text/css"/>
+	<link href="css/fa/font-awesome.css" rel="stylesheet" type="text/css"/>
+	<link href="css/nav.css" rel="stylesheet" type="text/css">
+	<link href="css/mbusiness.css" rel="stylesheet" type="text/css">	
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/jquery ui-1.11.4.js"></script>
+    <script type="text/javascript" src="js/primeui/primeui-2.2.RC1-min.js"></script>
+
+	<script src="js/ajaxfileupload.js"></script>	
+	<script src="js/mbusiness.js"></script>
+<script>
+var ui = 'touch';
+</script>
+
+<script>
+
+$(document).ready(function(){  
+  $("#cid").val(getParameter("id"));
+		
+	function ajaxFileUpload() {
+            var param = {
+						'supplierfile.supplierid':getParameter("id"),
+						'supplierfile.oldfilename':encodeURIComponent(encodeURIComponent($("#path").val())),
+						'supplierfile.zdy10':encodeURIComponent($("#memo").val())
+					};
+            $.ajaxFileUpload
+            (
+                {
+					url: 'supplier/addfile.action', //用于文件上传的服务器端请求地址
+                    secureuri: false, //是否需要安全协议，一般设置为false
+                    fileElementId: 'upload', //文件上传域的ID
+                    dataType: 'json', //返回值类型 一般设置为json
+                    data:param,
+                    success: function (data, status)  //服务器成功响应处理函数
+                    {
+                        alert(data.result.split("_")[0]);
+                    },
+                    error: function (data, status, e)//服务器响应失败处理函数
+                    {
+                        alert(e);
+                    }
+                }
+            )
+            return false;
+  }	
+ 
+  $("#keyvalueSubmit").click(function(){
+  	if($("#path").val() == '' || $("#path").val() == null){
+  		alert("请选择文件");
+  	}else{
+  		if($("#memo").val() == '' || $("#memo").val() == null){
+  			alert("请输入文件说明");
+  		}else{
+  			  ajaxFileUpload();
+  		}
+	}
+  });
+});
+</script>
+</head>
+<body>
+<div id="actionInfo"> </div>
+<div class="clear"></div>
+<div id="newdiv" class="connerdiv">
+	  <form id="addArticleF" name="addArticleForm" action="../keyvalue/addcontent" method="post"  enctype ="multipart/form-data">
+	    <dl class="connerbox">
+			<dd>
+	    		<span>
+	    			<table width="100%" height="100%">
+	    				<tr>
+	    					<td><a onclick="javascript:history.back();" style="cursor:pointer;"><<返回</a></td>
+	    					<td>新增附件</td>
+	    					<td>&nbsp;</td>
+	    				</tr>
+	    			</table>
+	    		</span>
+	    	</dd>
+			<dd>
+				<span class="form_hd">文件：</span>
+				<span class="form_td">
+			      	<input name="upload" id="upload" type="file" value="" maxlength="6" class="text_input"  onchange="path.value=this.value" />
+			      	<input type="hidden" name="path" id="path" style="border:0px;" size="10" style="margin-top:10px;"/>
+			    </span>
+			</dd>
+            <dd  class="file-box1">
+                	文件说明:<input type='text' name='memo' id='memo' class='txt' />
+                	<input type='hidden' name='memos' id='memos' class='txt' />
+             </dd>			
+	
+		</dl>
+	 	<div class="ui-btn-area">
+	        <input type="button" id="keyvalueSubmit" data-commit="address" class="btn_red" data-istempuser="false"  data-loading-text="正在提交..." value="保存"/>
+		</div>
+	  </form>   
+</div>
+
+</body></html>

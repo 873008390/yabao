@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache">  
+    <title>亚宝药业采购共享平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/cgh_js.js"></script>
+    <script src="js/ajaxfileupload.js"></script>
+</head>
+<body id="newsupplier2">
+             <div class="newsupplier2_top_h1">
+                供应商新增
+            </div> 
+            <div class="newsupplier2_top_1">          
+                <span rowspan="2">
+                    <input type="hidden" id="type" value="registercomplete" />
+                    <input type="submit" value="返回" id="back" class="register_btn" />
+                    <input type="submit" value="保存" id="save" class="register_btn" />
+                 </span>
+            </div>
+            <div class="newsupplier2_top_2 clearfix">
+                <div class="newsupplier2_top_2_1">
+                    <span><label>*</label> 名 称：</span>
+                    <input type="text" id="name" name="name" class="required"/>
+                </div>
+            </div>
+        
+        <div class="newsupplier_top2">
+            <ul class="clearfix">
+                <li class="pull-left active"><a href="javascript:void(0)">基本信息</a></li>
+                <li  class="pull-left"><a href="javascript:void(0)">财务信息</a></li>
+                <li class="pull-left"><a href="javascript:void(0)">资质文件</a></li>
+            </ul>
+        </div>
+        <div class="newsupplier2_main clearfix" style="display: block;">
+                <div>
+                    <span><label></label> 联系人：</span>
+                    <input type="text" id="contact"  name="contact" class="required"/>
+                </div>
+                <div>
+                    <span><label></label> 手机号：</span>
+                    <input type="text" id="phone"  name="phone"  class="required"/>
+                </div>
+                <div>
+                    <span><label></label> 座机号：</span>
+                    <input type="text" id="landline" name="landline"  class="required"/>
+                </div>
+                <div>
+                    <span><label></label> 传真号：</span>
+                    <input type="text" id="fax" name="fax" class="required"/>
+                </div>
+                <div>
+                    <span><label></label> 营业执照号：</span>
+                    <input type="text" id="license" name="license" class="required"/>
+                </div>
+                <div>
+                    <span><label></label> 默认税率：</span>
+                    <input type="text" id="taxrate" name="taxrate" class="required"/>%
+                </div>
+                <div class="dizhi">
+                    <span><label></label> 详细地址：</span>
+                    <select id="provinceid" name="provinceid">
+
+                    </select>
+<!--                     <select id="cityid" name="cityid">
+
+</select> -->
+                    <input type="text" id="address" name="address" class="required" />
+                </div>
+                <div>
+                    <span><label></label> 参标类型：</span>
+                    <select id="iscompany" name="user.zdy7">
+                        <option value ="1">公司</option>
+                        <option value ="0">个人</option>
+                    </select>
+                </div>
+        </div> 
+        <div class="newsupplier2_main clearfix">
+                <div>
+                    <span><label></label>开户银行：</span>
+                    <input type="text" id="bank" name="bank" class="required"/>
+                </div>
+                <div>
+                    <span><label></label> 开户名称：</span>
+                    <input type="text" id="bankname" name="bankname" class="required" />
+                </div>
+                <div>
+                    <span><label></label> 银行账号：</span>
+                    <input type="text" id="bankaccount" name="bankaccount" class="required" />
+                </div>
+                <div>
+                    <span><label></label> 发票类型：</span>
+                    <select id="invoicetype" name="invoicetype">
+                        <option value ="增值税专用发票">增值税专用发票</option>
+                        <option value ="增值税普通发票">增值税普通发票</option>
+                    </select>
+                </div>
+                <div>
+                    <span><label></label> 纳税类型：</span>
+                    <select id="taxtype" name="taxtype">
+                        <option value ="小规模纳税人">小规模纳税人</option>
+                        <option value ="一般纳税人">一般纳税人</option>
+                    </select>
+                </div>
+        </div>
+        <div class="newsupplier2_main clearfix">
+            <ul class="qualifications_cot" style="display: block;">
+                <li  class="file-box">
+                    <span></span> 资质文件<input type='text' name='path' id='path' class='txt' />
+                    <input type='button' class='btn' value='选择' />
+                    <input type="file" name="upload" class="file" id="upload" size="28" onchange="document.getElementById('path').value=this.value" />
+                    <input type='hidden' name='fileurl' id='fileurl' class='txt' />
+                </li>
+                <li  class="file-box">
+                	文件说明<input type='text' name='memo' id='memo' class='txt' />
+                	<input type='hidden' name='memos' id='memos' class='txt' />
+                </li>
+                <button id="uploadbtn">上传</button>
+                <li  class="file-box" id="url">温馨提示：文件尚未上传</li>
+                <li  class="file-box" id="url">注意：资质文件包括营业执照电子版、各类证书等规定上传的文件；其中，文件说明填写文件名称和文件简介</li>
+            </ul>
+        </div>
+        <script>
+            $(function(){
+	        	$("#back").click(function(){
+	        		history.back();
+	        	});
+	        	getProvince();
+	        	$("#provinceid").change(function(){
+	        		//alert("1");
+	        		getCity();
+	        	});
+                Tab2('.pull-left','.newsupplier2_main');
+                function Tab2(a,b){
+                    var aBtn = $(a);
+                    var aDiv = $('#newsupplier2').find(b);
+                    aBtn.click(function(){
+                        $('.newsupplier2_main').css('display', 'none');
+                        aBtn.removeClass('active');
+                        aBtn.eq($(this).index()).addClass('active');
+                        aDiv.eq($(this).index()).css('display', 'block');
+                    })
+                }
+                /*表单验证*/
+                $("#save").click(function(){
+                    if( $("#name").val()==""){
+                        alert("请输入名称");
+                        $("#name").focus();
+                        return false;
+                    }
+                    /* else if( $("#number").val()==""){
+                     alert("请输入编码");
+                     $("#number").focus();
+                     return false;
+                     }else if( $("#address").val()==""){
+                     alert("请输入详细地址");
+                     $("#address").focus();
+                     return false;
+                     }else if( $("#contact").val()==""){
+                     alert("请输入联系人");
+                     $("#contact").focus();
+                     return false;
+                     }else if( $("#phone").val()==""){
+                     alert("请输入手机号");
+                     $("#phone").focus();
+                     return false;
+                     }else if( $("#landline").val()==""){
+                     alert("请输入座机号");
+                     $("#landline").focus();
+                     return false;
+                     }else if( $("#fax").val()==""){
+                     alert("请输入传真号");
+                     $("#fax").focus();
+                     return false;
+                     }else if( $("#license").val()==""){
+                     alert("请输入营业执照");
+                     $("#license").focus();
+                     return false;
+                     }else if( $("#taxrate").val()==""){
+                     alert("请输入税率");
+                     $("#taxrate").focus();
+                     return false;
+                     }else if( $("#bank").val()==""){
+                     alert("请输入开户银行");
+                     $("#bank").focus();
+                     return false;
+                     }else if( $("#bankname").val()==""){
+                     alert("请输入开户名称");
+                     $("#bankname").focus();
+                     return false;
+                     }else if( $("#bankaccount").val()==""){
+                     alert("请输入银行账号");
+                     $("#bankaccount").focus();
+                     return false;
+                     } */
+
+                    var param = {
+                        'supplier.id':0,
+                        'supplier.name':encodeURIComponent($("#name").val()),
+                        'supplier.address':encodeURIComponent($("#address").val()),
+                        'supplier.contactperson':encodeURIComponent($("#contact").val()),
+                        'supplier.phoneno':$("#phone").val(),
+                        'supplier.tel':$("#landline").val(),
+                        'supplier.fax':$("#fax").val(),
+                        'supplier.companycode':$("#license").val(),
+                        'supplier.taxrate':$("#taxrate").val(),
+                        'supplier.bank':encodeURIComponent($("#bank").val()),
+                        'supplier.bankname':encodeURIComponent($("#bankname").val()),
+                        'supplier.bankaccount':$("#bankaccount").val(),
+                        'supplier.invoicetype':encodeURIComponent($("#invoicetype").val()),
+                        'supplier.taxtype':encodeURIComponent($("#taxtype").val()),
+                        'supplier.zdy10':$("#fileurl").val(),
+                    	'supplier.zdy9':encodeURIComponent($("#memos").val()),
+                    	'supplier.provinceid': $("#provinceid").val(),
+        /*            	'supplier.cityid': $("#cityid").val(),*/
+                    	'supplier.iscompany': encodeURIComponent($("#iscompany").val())    
+                    };
+                    $.post("supplier/onlineadd.action",param,function(res){
+                        alert(res.result);
+                    });
+                    return false;
+                });
+
+            });
+	  
+	        function ajaxFileUpload(uploadfilename) {
+	            var param = {
+	                'supplierfile.supplierid':0,
+	                'supplierfile.oldfilename': encodeURIComponent(uploadfilename)
+	            };
+	            $.ajaxFileUpload
+	            (
+	                    {
+	                        url: 'supplier/addfile.action', //用于文件上传的服务器端请求地址
+	                        secureuri: false, //是否需要安全协议，一般设置为false
+	                        fileElementId: 'upload', //文件上传域的ID
+	                        dataType: 'json', //返回值类型 一般设置为json
+	                        data:param,
+	                        //contentType:'text/html',
+	                        success: function (data, status)  //服务器成功响应处理函数
+	                        {	                        	
+	                        	if(data.result.indexOf("_")>-1){
+	                        		if($("#url").html().indexOf("温馨提示")>-1){
+		                            	$("#url").html("已上传："+ $("#memo").val());
+		                            	$("#memos").val($("#memo").val());
+		                            	$("#fileurl").val(data.result.split("_")[1]);
+	                            	}else{
+	                            		$("#url").html($("#url").html() +";"+ $("#memo").val());
+		                            	$("#memos").val($("#memos").val() +";"+ $("#memo").val());
+		                            	$("#fileurl").val($("#fileurl").val() +";"+ data.result.split("_")[1]);
+	                            	}
+	                            	$("#path").val("");
+	                            	$("#memo").val("");
+	                        	}else{
+	                            	alert(data.result);
+	                            }
+	                        },
+	                        error: function (data, status, e)//服务器响应失败处理函数
+	                        {
+	                            alert(e);
+	                        }
+	                    }
+	            )
+	            return false;
+	        }
+
+            $("#uploadbtn").click(function(){
+		  		if($("#path").val() == '' || $("#path").val() == null){
+			  		alert("请选择文件");
+			  		return false;
+			  	}else{
+			  		var uploadfile =  $("#path").val();
+					var len = uploadfile.replace(/\\/g,"_").split("_").length;
+					var uploadfilename = uploadfile.replace(/\\/g,"_").split("_")[len-1];
+				  	if($("#memo").val() == '' || $("#memo").val() == null){
+				  		alert("请输入文件说明");
+			  			return false;
+				  	}else{
+					  	ajaxFileUpload(uploadfilename);
+					}
+				}
+		  	});
+	  	
+		  	function getProvince(){
+			  	var params = {
+			  		'idtype': "all",
+			  		'typeid': "0"
+			  	};
+			  	$.post("province/list.action", params, function(res){
+			  		var provinces = res.provinces;
+			  		if(provinces[0].id > 0){
+			  			var inner = "";
+			  			for(var i=0;i<provinces.length;i++){
+			  				inner += "<option value="+ provinces[i].id +">"+ provinces[i].name +"</option>"
+			  			}
+			  			$("#provinceid").html(inner);
+			  			getCity();
+			  		}
+			  	});
+		  	}
+		  	
+		  	function getCity(){
+				  	var params = {
+				  		'idtype': "province",
+				  		'typeid': $("#provinceid").val()
+				  	};
+				  	$.post("city/list.action", params, function(res){
+				  		var citys = res.citys;
+				  		if(citys[0].id > 0){
+				  			var inner = "";
+				  			for(var i=0;i<citys.length;i++){
+				  				inner += "<option value="+ citys[i].id +">"+ citys[i].name +"</option>"
+				  			}
+				  			$("#cityid").html(inner);
+				  		}
+				  	});
+		  	}
+        </script>
+</body>
+</html>

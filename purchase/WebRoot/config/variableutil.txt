@@ -1,0 +1,4 @@
+POST_K3CloudURL = http://192.168.1.198/K3Cloud/;
+dbId = 581036be1fdda9;
+uid = 1111ZGd0ZXN01432;
+pwd = 2329MTIzNDU24584;

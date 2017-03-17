@@ -1,0 +1,7 @@
+
+  <listener>
+  	<listener-class>com.weixin.util.GetphotoListener</listener-class>
+  </listener>
+  <listener>
+  	<listener-class>com.mbusiness.util.MonitorsmsListener</listener-class>
+  </listener>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="supplier" extends="json-default" namespace="/supplier">  
+        <action name="list" class="com.mbusiness.action.SupplierListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="add" class="com.mbusiness.action.SupplierAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="delete" class="com.mbusiness.action.SupplierDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="onlineadd" class="com.mbusiness.action.SupplieronlineAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="addfile" class="com.mbusiness.action.SupplierAddfileAction" method="add">
+            <param name="savePath">/upload</param> 
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="deletefile" class="com.mbusiness.action.SupplierfileDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="listfile" class="com.mbusiness.action.SupplierfileListAction" method="list">
+            <result type="json"></result>
+        </action> 
+        <action name="modify" class="com.mbusiness.action.SupplierModifyAction" method="modify">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="addcatalog" class="com.mbusiness.action.SuppliercatalogAddAction" method="add">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+        <action name="deletecatalog" class="com.mbusiness.action.SuppliercatalogDeleteAction" method="delete">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action> 
+        <action name="audit" class="com.mbusiness.action.SupplierAuditAction" method="audit">
+            <result type="json"></result>
+            <result name="input" type="json"></result>
+        </action>
+    </package> 
+</struts>

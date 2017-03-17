@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>投诉建议</title>
+	<link rel="stylesheet" href="css/style_gh.css">
+</head>
+<body>
+	</head>
+<body>
+	<div id="news">
+		<!-- 头部 -->
+		<header id="header">
+			<div id="logo">
+					<a href="index.html">
+						<div class="logo1"><img src="image/logo1.png" alt=""></div>
+						<div class="logo2"><img src="image/logo2.png" alt=""></div>						
+					</a>		
+			</div>
+			<nav id="nav">
+				       	        	        	        
+			</nav>	
+		</header>
+		<div class="tender_content">
+				<ul class="breadcrumbs" id="navbar">
+				    
+				</ul>
+				<div class="tender_mian">
+					<div class="tender_mian_lf">
+						<div class="tender-nav news-nav" id="navlist">
+							
+						</div>
+						<div class="tender_contact">
+							<p class="tender_contact_t">联系我们<span>&nbsp;/&nbsp;Contact Us</span></p>
+							<div class="tender_contact_cot" id="contact">
+								
+							</div>
+						</div>
+						<div class="tender_search">
+							<p class="tender_contact_t">站内搜索<span>&nbsp;/&nbsp;Download</span></p>
+							<div class="tender_search_cot">
+								<input type="text" id="keyword">
+								<button id="search"><a >搜索</a></button>							
+							</div>
+						</div>
+						<img src="image/map.png" alt="" class="news_map">
+					</div>
+					<div class="tender_mian_rt complaint">
+						<div class="tender_mian_rt_ht">
+							<a href="" class="active">我的投诉</a>						
+						</div>
+						<div class="mycomplaint_cot">
+							<table border="1" id="suggestlist">
+																								
+							</table>
+							<div class="page-normal" id="pagelist">
+							    
+							</div>														
+						</div>					
+					</div>
+				</div>					
+		</div>	
+	</div>
+	<footer class="clearfloat">
+			
+	</footer>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.validate.js"></script>		
+	<script src="js/cgh_js.js"></script>
+	<script src="js/alamo_js.js"></script>	
+	<script type="text/javascript">
+		settypemenu(getParameter("menuid"));
+		gettypesuggest(0,12);
+		getcontact();
+		$("#search").click(function(){
+			self.location = "search.html?keyword="+ escape($("#keyword").val());
+		});
+	</script>		
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>亚宝集团网站管理平台</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/reset.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript"> 
+
+  function currentData(){ 
+    var d=new Date(),str=''; 
+    str+=d.getFullYear()+'/'; 
+    str+=d.getMonth() + 1+'/'; 
+    str+=d.getDate(); 
+    return str; 
+} 
+setInterval(function(){$('#data').html(currentData)},6000);
+ 
+
+  function currentTime(){ 
+    var d=new Date(),str=''; 
+    str+=d.getHours()+':'; 
+    str+=d.getMinutes(); 
+    //str+= d.getSeconds()+'秒'; 	
+    return str; 
+} 
+setInterval(function(){$('#time').html(currentTime)},6000);
+
+
+</script> 
+</head>
+
+<body>
+<div class="mainBody">
+  <div class="title">亚宝集团网站管理平台<i class="banben">版本号V1.0.80</i></div>
+
+
+
+  <div class="form">
+  
+     <div class="win10_user"></div>
+    <form method="get" action="" name="" id="" >
+      <ul class="g_d_list">
+        <li>
+          <input class="m01" type="text" placeholder="用户名" name="user_name" id="user_name" maxlength="11" required>
+        </li>
+        
+        <li>
+          <input class="m02"  type="password" placeholder="密码" name="password" id="password" maxlength="20" required>
+          <input type="button" class="login_btn" value="">
+        </li> 
+        <li class="m03">密码输入错误，请重试</li> 
+      </ul>
+
+      
+    </form>
+</div>
+
+  <div id="top-bar" class="top-bar">
+    <div class="bar">
+      <span class="time"><ul><li id="time"></li><li id="data"></li></ul></span>
+      <span class="user1">管理员admin</span>
+    </div>
+
+  
+  <div class="power">power by ShengZhen Mobile Soft Inc.</div>
+  
+
+</div>
+</body>
+</html>
